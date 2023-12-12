@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -73,4 +75,21 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  @apply font-normal;
+}
+
+h1, h2, h3, h4, h4, h6 {
+  @apply font-semibold leading-[3rem];
+}
+
+h1 {
+  @apply text-[2.5rem];
+}
+
+p {
+  @apply text-xl;
 }
