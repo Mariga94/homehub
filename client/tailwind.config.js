@@ -1,12 +1,15 @@
+const { url } = require('inspector');
+
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -16,6 +19,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        'custom-image': "url('/public/images/jumbotron.jpg')"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -72,5 +78,6 @@ module.exports = {
       },
     },
   },
+
   plugins: [require("tailwindcss-animate")],
-}
+};
