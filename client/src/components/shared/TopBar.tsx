@@ -2,20 +2,23 @@ import HomeHubLogo from "./Logo";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-const TopBar = () => {
+
+const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
   return (
-    <nav className="flex flex-row items-center w-full h-16 border-b border-[#DBDFEC] px-4 text-white gap-4">
+    <nav
+      className={`flex flex-row items-center w-full h-16 border-b border-[#DBDFEC] px-4 ${textcolor} gap-4`}
+    >
       <HomeHubLogo />
       <div className="">
-        <Button variant="link" asChild className={cn('text-white text-sm ')}>
-          <Link to="/">Sale</Link>
+        <Button variant="link" asChild className={cn("text-sm ", textcolor)}>
+          <Link to="/listing/for-sale" >Sale</Link>
         </Button>
-        <Button variant="link" asChild className={cn('text-white')}>
-          <Link to="/">Rent</Link>
+        <Button variant="link" asChild className={cn(textcolor)}>
+          <Link to="/listing/for-rent">Rent</Link>
         </Button>
       </div>
       <div className="flex flex-row gap-5 ml-auto">
-        <Button variant="outline" asChild className="text-black">
+        <Button variant="outline" asChild className="text-gray-800 text-sm">
           <Link to="/">Sign In</Link>
         </Button>
         <Button variant="default" className=" text-slate-50">
