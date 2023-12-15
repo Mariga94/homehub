@@ -3,7 +3,7 @@ import { Facebook, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-row px-20 py-24 gap-48">
+    <footer className="flex flex-row px-20 py-24 gap-48 border-t">
       <section className="flex flex-col gap-6">
         <div color="text-[#4A60A1]">
           <HomeHubLogo />
