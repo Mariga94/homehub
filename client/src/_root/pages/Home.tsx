@@ -191,12 +191,12 @@ const Home = () => {
         </section>
       </section>
 
-      <section className="flex flex-col px-20 py-24 gap-10 items-center justify-center bg-slate-100">
+      <section className="flex flex-col px-20 py-24 m-auto gap-10 items-center justify-center bg-slate-100">
         <h2>Latest House on Sale</h2>
         <p className="text-[#889099]">
           Checkout latest houses, apartment and commercial properties on sale.
         </p>
-        <section className="flex gap-4 snap-mandatory snap-x">
+        <section className="flex gap-4 container overflow-x-auto hide-scroll-bar ">
           <Card className={cn("w-[350px] snap-center flex-shrink-0")}>
             <CardHeader>
               <CardTitle>
