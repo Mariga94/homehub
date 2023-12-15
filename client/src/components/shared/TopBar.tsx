@@ -19,10 +19,10 @@ const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
       </div>
       <div className="flex flex-row gap-5 ml-auto">
         <Button variant="outline" asChild className="text-gray-800 text-sm">
-          <Link to="/">Sign In</Link>
+          <Link to="/sign-in">Sign In</Link>
         </Button>
         <Button variant="default" className=" text-slate-50">
-          <Link to="/">Sign Up</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </Button>
       </div>
     </nav>
