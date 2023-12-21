@@ -16,6 +16,6 @@ const userSchema = new Schema<IUser>({
   createdAt: { type: Date, default: Date.now },
 });
 
-const UserModel = model<IUser>("User", userSchema);
+const User = model<IUser>("User", userSchema);
 
-export default UserModel;
+export default User;
