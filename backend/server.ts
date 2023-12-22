@@ -9,6 +9,8 @@ import propertyRoutes from './routes/v1/propertyRoutes';
 import { swaggerUi, specs } from './swagger'
 import authenticateAPIKey from './middlewares/authenticateApiKey';
 import loggerMiddleware from './middlewares/loggerMiddleware'
+import helmet from 'helmet';
+import compression from 'compression';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,6 +37,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Middleware setup
+app.use(compression()) //response compression
+app.use(helmet()) //enhance security headers
 app.use(bodyParser.json()) //Parse JSON bodies in requests
 app.use(cookieParser())  //Parse cookies in request
 app.use(authenticateAPIKey)
