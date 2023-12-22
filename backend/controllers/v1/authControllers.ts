@@ -34,18 +34,18 @@ const signUp = async (req: Request, res: Response): Promise<void> => {
 }
 
 
-const signIn = async (req: Request, res: Response): Promise<void> => {
+const signIn = async (req: Request, res: Response): Promise<any> => {
     try {
 
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
         if (!user) {
-            res.status(401).json({ error: 'Invalid credentials' })
+            return res.status(401).json({ error: 'Invalid credentials' })
         } else {
             const passwordMatch = await bcrypt.compare(password, user?.password)
             if (!passwordMatch) {
-                res.status(401).json({ error: "Invalid credentials" })
+                return res.status(401).json({ error: "Invalid credentials" })
             } else {
                 const token = jwt.sign(
                     {
@@ -56,7 +56,7 @@ const signIn = async (req: Request, res: Response): Promise<void> => {
                     process.env.JWT_KEY!
                 );
                 // const { email, _id, ...info } = user._doc;
-                res
+                return res
                     .cookie("token", token, {
                         httpOnly: true,
                         sameSite: "none",
@@ -72,7 +72,7 @@ const signIn = async (req: Request, res: Response): Promise<void> => {
         }
     } catch (err: any) {
         console.error(err);
-        res.status(500).json({ message: "Internal Server Error" })
+        return res.status(500).json({ message: "Internal Server Error" })
     }
 }
 
