@@ -1,6 +1,5 @@
 // Import required modules and libraries
 import express from 'express';
-import * as mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';

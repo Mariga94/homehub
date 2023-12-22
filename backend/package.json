@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start:dev": "nodemon server.ts",
-    "start:prod": "node server.js",
+    "start:prod": "node server.ts",
     "build": "tsc",
     "test": "jest"
   },
