@@ -10,6 +10,7 @@ import { swaggerUi, specs } from './swagger'
 import authenticateAPIKey from './middlewares/authenticateApiKey';
 import loggerMiddleware from './middlewares/loggerMiddleware'
 import helmet from 'helmet';
+import connectToMongoDB from './config/database'
 
 // Load environment variables from .env file
 dotenv.config();
@@ -19,16 +20,6 @@ const app = express();
 
 const PORT = process.env.port || 3001;
 const MONGODB_URI: string = process.env.MONGO_URL!;
-
-// function to connect to MONGODB
-function connectToDB() {
-    try {
-        mongoose.connect(MONGODB_URI)
-        console.log('connected to mongodb');
-    } catch (error: any) {
-        console.error('Error connecting to MONGODB', error.message)
-    }
-}
 
 //setup the logger on dev environment 
 if (process.env.NODE_ENV === 'development') {
@@ -58,7 +49,7 @@ app.get('/api/secure', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    connectToDB()
+    connectToMongoDB(MONGODB_URI)
     console.log("Server listening on port 3000")
 })
 
