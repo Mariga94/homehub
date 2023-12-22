@@ -24,7 +24,7 @@ const Home = () => {
               dreams that await you.
             </p>
           </div>
-          <div className="mx-44 mt-32">
+          <div className="mt-32 flex items-center justify-center">
             <SearchForm />
           </div>
         </div>
@@ -253,62 +253,7 @@ const Home = () => {
               <p>Kilimani, Nairobi, Kenya</p>
             </CardFooter>
           </Card>
-          <Card className={cn("w-[350px] snap-center flex-shrink-0")}>
-            <CardHeader>
-              <CardTitle>
-                <img src="/public/images/jumbotron.jpg" alt="" />
-              </CardTitle>
-              <CardDescription>
-                <h3 className="text-blue-600 text-2xl">
-                  3-Bedroom Furnished Duplex Apartment For Rent in Kilimani
-                </h3>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <span className="font-semibold">Kes 250,000 / month</span>
-              <div className="flex flex-row gap-5 text-[#889099]">
-                <div className="flex flex-row gap-1 items-center justify-center ">
-                  <Bed />
-                  <span>3</span> beds
-                </div>
-                <div className="flex flex-row gap-1 items-center justify-center">
-                  <Bath />
-                  <span>2</span> baths
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <p>Kilimani, Nairobi, Kenya</p>
-            </CardFooter>
-          </Card>
-          <Card className={cn("w-[350px] snap-center flex-shrink-0")}>
-            <CardHeader>
-              <CardTitle>
-                <img src="/public/images/jumbotron.jpg" alt="" />
-              </CardTitle>
-              <CardDescription>
-                <h3 className="text-blue-600 text-2xl">
-                  3-Bedroom Furnished Duplex Apartment For Rent in Kilimani
-                </h3>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <span className="font-semibold">Kes 250,000 / month</span>
-              <div className="flex flex-row gap-5 text-[#889099]">
-                <div className="flex flex-row gap-1 items-center justify-center ">
-                  <Bed />
-                  <span>3</span> beds
-                </div>
-                <div className="flex flex-row gap-1 items-center justify-center">
-                  <Bath />
-                  <span>2</span> baths
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <p>Kilimani, Nairobi, Kenya</p>
-            </CardFooter>
-          </Card>
+          
         </section>
       </section>
       <Footer />
