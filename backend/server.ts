@@ -7,7 +7,9 @@ import bodyParser from 'body-parser';
 import authRoutes from './routes/v1/authRoutes';
 import propertyRoutes from './routes/v1/propertyRoutes';
 import { swaggerUi, specs } from './swagger'
-import authenticateAPIKey from './middlewares/authenticateApiKey'
+import authenticateAPIKey from './middlewares/authenticateApiKey';
+import loggerMiddleware from './middlewares/loggerMiddleware'
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -25,6 +27,11 @@ function connectToDB() {
     } catch (error: any) {
         console.error('Error connecting to MONGODB', error.message)
     }
+}
+
+//setup the logger on dev environment 
+if (process.env.NODE_ENV === 'development') {
+    app.use(loggerMiddleware)
 }
 
 // Middleware setup
