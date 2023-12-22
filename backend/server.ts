@@ -3,7 +3,8 @@ import * as mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';
-import authRoutes from './routes/v1/authRoutes'
+import authRoutes from './routes/v1/authRoutes';
+import propertyRoutes from './routes/v1/propertyRoutes';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ function connectToDB() {
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use('/api/auth', authRoutes);
+app.use('/api/property', propertyRoutes)
 
 app.get('/', (req, res) => {
     res.status(200).json({ message: 'connected' })
