@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import authRoutes from './routes/v1/authRoutes';
 import propertyRoutes from './routes/v1/propertyRoutes';
 import { swaggerUi, specs } from './swagger'
-
+import authenticateAPIKey from './middlewares/authenticateApiKey'
 // Load environment variables from .env file
 dotenv.config();
 
@@ -30,6 +30,7 @@ function connectToDB() {
 // Middleware setup
 app.use(bodyParser.json()) //Parse JSON bodies in requests
 app.use(cookieParser())  //Parse cookies in request
+app.use(authenticateAPIKey)
 
 // Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
@@ -41,6 +42,10 @@ app.use('/api/property', propertyRoutes)
 // Default route for testin server conncetion.
 app.get('/', (req, res) => {
     res.status(200).json({ message: 'connected' })
+})
+
+app.get('/api/secure', (req, res) => {
+    res.json({ message: 'Secure endpoint accessed successfully' })
 })
 
 app.listen(PORT, () => {
