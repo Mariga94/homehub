@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@sentry/cli": "^2.23.1",
     "@sentry/node": "^7.91.0",
