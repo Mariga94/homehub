@@ -25,7 +25,7 @@
   "scripts": {
     "start:dev": "nodemon server.ts",
     "start:prod": "node ./dist/server.js",
-    "build": "tsc && ",
+    "build": "tsc",
     "test": "jest",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org joseph-mariga --project node-express ./dist && sentry-cli sourcemaps upload --org joseph-mariga --project node-express ./dist"
   },
