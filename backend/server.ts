@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import authRoutes from './routes/v1/authRoutes';
 import propertyRoutes from './routes/v1/propertyRoutes';
 import { swaggerUi, specs } from './swagger'
@@ -19,7 +20,7 @@ dotenv.config();
 const app = express();
 
 Sentry.init({
-    dsn: "https://5c67c34101eeed0a761efdf1aeb87300@o4506441767649280.ingest.sentry.io/4506441770598400",
+    dsn: process.env.SENTRY_DSN,
     integrations: [
         // enable HTTP calls tracing
         new Sentry.Integrations.Http({ tracing: true }),
@@ -40,10 +41,13 @@ const MONGODB_URI: string = process.env.MONGO_URL!;
 if (process.env.NODE_ENV === 'development') {
     app.use(loggerMiddleware)
 }
-
+const corsOptions = {
+    origin: 'http://localhost:5173'
+}
 // Middleware setup
 app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
+app.use(cors(corsOptions))
 app.use(helmet()) //enhance security headers
 app.use(bodyParser.json()) //Parse JSON bodies in requests
 app.use(cookieParser())  //Parse cookies in request
@@ -69,7 +73,7 @@ app.get('/api/secure', (req, res) => {
 
 app.get("/debug-sentry", function mainHandler(req, res) {
     throw new Error("My first Sentry error!");
-  });
+});
 
 app.listen(PORT, () => {
     connectToMongoDB(MONGODB_URI)
