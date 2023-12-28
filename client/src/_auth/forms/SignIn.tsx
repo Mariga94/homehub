@@ -14,8 +14,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { postData } from "@/services/api";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   email: z.string().min(2).max(50),
@@ -23,6 +28,9 @@ const formSchema = z.object({
 });
 
 const SignInForm = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,15 +40,34 @@ const SignInForm = () => {
   });
 
   //   Submit handler
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      const res = await postData("auth/sign-in", { ...values });
+      console.log(res);
+      setIsLoading(false);
+      toast({
+        variant: "success",
+        description: "Welcome back! You have successfully signed in",
+      });
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      toast({
+        variant: "destructive",
+        description:
+          "Account not found. Please check your credentials and try again.",
+      });
+      setIsLoading(false);
+    }
   };
   return (
-    <div className="flex flex-row flex-1 h-screen">
+    <div className="flex lg:flex-row flex-1 h-screen">
+      <Toaster />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col flex-1 pt-20 space-y-6 items-center w-2/4"
+          className="flex flex-col flex-1 pt-20 space-y-6 items-center lg:w-2/4"
         >
           <h2 className="text-center">HomeHub</h2>
           <p>Sign into your account</p>
@@ -49,7 +76,7 @@ const SignInForm = () => {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className={cn(" w-1/2")}>
+              <FormItem className={cn(" lg:w-1/2 w-3/4")}>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} />
@@ -62,7 +89,7 @@ const SignInForm = () => {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className={cn(" w-1/2")}>
+              <FormItem className={cn(" lg:w-1/2 w-3/4")}>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input placeholder="" {...field} />
@@ -71,20 +98,26 @@ const SignInForm = () => {
               </FormItem>
             )}
           />
-          <div className="flex justify-end w-1/2 ">
-            <Link to='/reset-password' className="text-blue-700 underline">Forgot your Password</Link>
+          <div className="flex justify-end lg:w-1/2 w-3/4">
+            <Link to="/reset-password" className="text-blue-700 underline">
+              Forgot your Password
+            </Link>
           </div>
-          <Button type="submit" className={cn("w-1/2")}>
-            Sign In
+          <Button type="submit" className={cn("lg:w-1/2 w-3/4")}>
+            {isLoading ? "Loading..." : "Sign In"}
           </Button>
-          <div >
+          <div>
             <p>
-              Don't have an account? <Link to="/sign-up" className="hover:underline text-blue-700">Sign up</Link> here. 
+              Don't have an account?{" "}
+              <Link to="/sign-up" className="hover:underline text-blue-700">
+                Sign up
+              </Link>{" "}
+              here.
             </p>
           </div>
         </form>
       </Form>
-      <div className="flex-1 relative overflow-hidden bg-no-repeat bg-custom-image bg-cover bg-center h-screen">
+      <div className="lg:flex-1 relative overflow-hidden bg-no-repeat bg-custom-image bg-cover bg-center h-screen">
         <div className="absolute flex flex-col pt-48 px-10 text-center bg-fixed w-full bg-black bg-opacity-20 h-full text-white">
           <h1 className="text-2xl font-bold text-white ">
             Welcome to <span className="text-blue-700">HomeHub</span>
