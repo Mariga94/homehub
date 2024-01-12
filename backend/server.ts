@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import authRoutes from './routes/v1/authRoutes';
 import propertyRoutes from './routes/v1/propertyRoutes';
+import userRoutes from './routes/v1/userRoutes';
 import { swaggerUi, specs } from './swagger'
 import authenticateAPIKey from './middlewares/authenticateApiKey';
 import loggerMiddleware from './middlewares/loggerMiddleware'
@@ -41,8 +42,15 @@ const MONGODB_URI: string = process.env.MONGO_URL!;
 if (process.env.NODE_ENV === 'development') {
     app.use(loggerMiddleware)
 }
+const allowedOrigins = [
+    'http://127.0.0.1:5173',
+    'http://localhost:5173',
+
+]
 const corsOptions = {
-    origin: 'http://localhost:5173'
+    credentials: true,
+    optionsSuccessStatus: 200,
+    origin: allowedOrigins,
 }
 // Middleware setup
 app.use(Sentry.Handlers.requestHandler());
@@ -60,7 +68,8 @@ app.use(Sentry.Handlers.errorHandler());
 
 // API routes setup
 app.use('/api/auth', authRoutes);
-app.use('/api/property', propertyRoutes)
+app.use('/api/property', propertyRoutes);
+app.use('/api/user', userRoutes);
 
 // Default route for testin server conncetion.
 app.get('/', (req, res) => {
