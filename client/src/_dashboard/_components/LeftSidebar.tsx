@@ -5,8 +5,8 @@ const LeftSidebar = () => {
   const currentUrl = location.pathname;
 
   return (
-    <nav className="leftsidebar h-screen">
-      <div className="mt-10 flex flex-col gap-5 mx-3 cursor-pointer">
+    <nav className="leftsidebar md:h-screen">
+      <div className="lg:mt-10 md:mt-10 mt-2 flex flex-col lg:gap-5 md:gap-5 gap-3 lg:mx-3 cursor-pointer">
         <Link
           to="/dashboard/my-listing"
           className={`py-4 px-2 flex flex-row items-center gap-3 rounded-md hover:bg-primary hover:opacity-80

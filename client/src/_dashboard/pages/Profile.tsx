@@ -15,37 +15,75 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { fetchData, postData } from "@/services/api";
+import { useEffect, useState } from "react";
 
 const formSchema = z.object({
-  fullname: z.string().min(2).max(50),
-  title: z.string().max(50),
-  phoneNumber: z.string().min(9).max(13),
-  personalInfo: z.string().max(100),
+  fullName: z.string().min(2).max(50).optional(),
+  title: z.string().max(50).optional(),
+  phoneNumber: z.string().max(13).optional(),
+  personalInfo: z.string().max(100).optional(),
 });
 
+interface ILocalStorageUser {
+  fullName: string;
+  _id: string;
+  email: string;
+}
+interface IUserProfile {
+  _id: string;
+  fullName?: string;
+  title?: string;
+  phoneNumber?: string;
+  personalInfo?: string;
+}
+const currentUser: string | null = localStorage.getItem("user");
+const objectifyUser: ILocalStorageUser = JSON.parse(currentUser!);
+const userId: string = objectifyUser?._id;
+
 const Profile = () => {
+  const [profile, setProfile] = useState<IUserProfile | undefined>(undefined);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullname: "",
+      fullName: "",
       title: "",
       phoneNumber: "",
       personalInfo: "",
     },
   });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await fetchData(`user/${userId}`);
+        setProfile(response.user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProfileData();
+  }, [form]);
 
-  //   Submit handler
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setIsSubmitting(true);
+      const res = await postData("user/update-profile", "PUT", { ...values });
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
-    <div className="flex flex-row pt-10 px-5 w-full space-x-6">
-      <div className="w-1/4">
+    <div className="flex lg:flex-row md:flex-col flex-col items-start pt-5 px-5 lg:px-5  w-full lg:space-x-6 space-y-6 ">
+      <div className="lg:w-1/4 w-full">
         <h2>Personal Information</h2>
         <p>Update your personal information</p>
       </div>
-      <div className="w-3/4 ">
-        <div className="flex flex-col px-20 gap-4 mb-5">
+      <div className="lg:w-3/4 w-full ">
+        <div className="flex flex-col lg:px-20 gap-4 mb-5">
           <Avatar className={cn("w-[5rem] h-[5rem]")}>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
@@ -63,16 +101,16 @@ const Profile = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col flex-1 space-y-6 w-full px-20 pb-20"
+            className="flex flex-col lg:space-y-6 space-y-2 md:space-y-6 w-full lg:px-20 lg:pb-20"
           >
             <FormField
               control={form.control}
-              name="fullname"
+              name="fullName"
               render={({ field }) => (
                 <FormItem className={cn(" ")}>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input placeholder={profile?.fullName} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -85,7 +123,14 @@ const Profile = () => {
                 <FormItem className={cn(" ")}>
                   <FormLabel>Your Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input
+                      placeholder={
+                        profile?.title
+                          ? profile?.title
+                          : "Choose among Agent, Owner"
+                      }
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,20 +143,14 @@ const Profile = () => {
                 <FormItem className={cn("")}>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="fullname"
-              render={({ field }) => (
-                <FormItem className={cn("")}>
-                  <FormLabel>Full Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input
+                      placeholder={
+                        profile?.phoneNumber
+                          ? profile?.phoneNumber
+                          : "Enter valid phone number"
+                      }
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -124,14 +163,21 @@ const Profile = () => {
                 <FormItem className={cn("")}>
                   <FormLabel>Personal Info</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input
+                      placeholder={
+                        profile?.personalInfo
+                          ? profile?.personalInfo
+                          : "Add info"
+                      }
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button type="submit" className={cn("w-1/2")}>
-              Save Changes
+              {isSubmitting ? "Saving changes..." : "Save changes"}
             </Button>
           </form>
         </Form>

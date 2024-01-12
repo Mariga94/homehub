@@ -7,54 +7,95 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MoreHorizontal } from "lucide-react";
+import { addCommasToNumbers } from "@/services/addCommasToNumbers";
 
-interface PropertyInterface {
-  id: string;
-  imgUrl: string;
-  imgUrls: string[];
-  title: string;
-  price: number;
-  rooms: number;
-  bathrooms: number;
-  type: string;
-  status: string;
-  location: {
-    city: string;
-    state: string;
-    zipCode: string;
-    latiLon: number[];
-    zoom: number;
-  };
-  amenities: string[];
-  description: string[];
+interface featuresInterface {
+  balcony: boolean;
+  elevator: boolean;
+  pool: boolean;
+  petFriendly: boolean;
+  gym: boolean;
+  fireAlarm: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ListingTable = ({ data }: { data: any[] }) => {
+interface locationInterface {
+  address: string;
+  city: string;
+  country: string;
+}
+
+export interface PropertyInterface {
+  _id: string;
+  title: string;
+  description: string;
+  type: string;
+  propertyStatus: string;
+  location: locationInterface;
+  bedrooms: number;
+  bathrooms: number;
+  floors: number;
+  price: number;
+  area: string;
+  size: string;
+  videoURL: string;
+  features: featuresInterface;
+  gallery: string[];
+}
+type handleDeletePropertyfunction = (id: string) => void;
+const ListingTable = ({
+  data,
+  handleDeleteProperty,
+}: {
+  data: PropertyInterface[];
+  handleDeleteProperty: handleDeletePropertyfunction;
+}) => {
   return (
     <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Title</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Type</TableHead>
-          <TableHead>Location</TableHead>
-          <TableHead className="text-right">Price</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead className=""></TableHead>
+          <TableHead className="font-semibold">Title</TableHead>
+          <TableHead className="font-semibold">Status</TableHead>
+          <TableHead className="font-semibold">Type</TableHead>
+          <TableHead className="font-semibold">Location</TableHead>
+          <TableHead className="font-semibold">Price</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {data.map((property) => {
           return (
-            <TableRow key={property.id}>
-              <TableCell className="w-1/2">{property.title}</TableCell>
-              <TableCell>{property.status}</TableCell>
-              <TableCell>{property.type}</TableCell>
+            <TableRow key={property._id}>
               <TableCell>
-                {property.location.city} {property.location.zipCode}
+                <img src={property.gallery[0]} alt="" className="h-20 w-26" />
               </TableCell>
-              <TableCell>{property.price}</TableCell>
+              <TableCell className="">{property.title}</TableCell>
+              <TableCell>{property.propertyStatus}</TableCell>
+              <TableCell>{property.type}</TableCell>
+              <TableCell>{property.location.address}</TableCell>
+              <TableCell>{addCommasToNumbers(property.price)}</TableCell>
+              <TableCell>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <MoreHorizontal />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => handleDeleteProperty(property._id)}
+                    >
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TableCell>
             </TableRow>
           );
         })}
