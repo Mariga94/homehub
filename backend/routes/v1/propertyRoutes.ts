@@ -39,8 +39,12 @@ const router = express.Router();
 
 router.post('/', authenticateUser, PropertyController.createProperty);
 router.get('/', authenticateUser, PropertyController.getProperties);
-router.get('/:id', authenticateUser, PropertyController.getPropertyById);
+router.get('/user', authenticateUser, PropertyController.getUserProperties);
+router.get('/for-sale', authenticateUser, PropertyController.getPropertiesForSale);
+router.get('/for-rent', authenticateUser, PropertyController.getPropertiesForRent);
+router.get('/:id', authenticateUser, PropertyController.getPropertyById)
 router.put('/:id', authenticateUser, PropertyController.updateProperty);
 router.delete('/:id', authenticateUser, PropertyController.deleteProperty);
+
 
 export default router
