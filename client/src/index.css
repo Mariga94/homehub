@@ -108,12 +108,15 @@ a {
   display: none;
 }
 
+.property-list {
+  
+}
 /* ---Home---  */
 
 
 @layer utilities {
   .leftsidebar {
-    @apply hidden md:flex px-6 py-2 flex-col justify-between min-w-[270px] border-r-2;
+    @apply flex md:flex px-6 py-2 flex-col justify-between lg:min-w-[270px] md:min-w-[270px] border-r-2 h-[220px];
   }
 
   .leftsidebar-link {
