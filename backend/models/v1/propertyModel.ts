@@ -1,16 +1,17 @@
-import mongoose, { Document, Schema, Model } from 'mongoose'
+import mongoose, { Document, Schema } from 'mongoose'
 
 // Define the inteface for the User Document
 
 enum PropertyType {
-    Apartment = 'apartment',
-    Office = 'office',
-    Bungalow = 'bungalow'
+    Apartment = 'Apartment',
+    Office = 'Office',
+    Bungalow = 'Bungalow',
+    Furnished_Apartment = 'Furnished Apartment'
 }
 
 enum PropertyStatus {
-    Sale = 'sale',
-    Rent = 'rent'
+    Sale = 'Sale',
+    Rent = 'Rent'
 }
 
 export interface IProperty extends Document {
@@ -38,6 +39,7 @@ export interface IProperty extends Document {
         elevator: string
     };
     gallery: string[];
+    owner: { type: string, ref: string, }
 }
 
 const propertySchema = new Schema<IProperty>({
@@ -49,14 +51,14 @@ const propertySchema = new Schema<IProperty>({
         address: { type: String, required: true },
         country: { type: String, required: true },
         city: { type: String, required: true },
-        zipCode: { type: String, required: true },
-        latlng: { type: [Number], required: true }
+        zipCode: { type: String, required: false },
+        latlng: { type: [Number], required: false }
     },
     bedrooms: { type: Number, required: true },
     bathrooms: { type: Number, required: true },
     floors: { type: Number, required: true },
     price: { type: Number, required: true },
-    videoUrl: { type: String, required: true },
+    videoUrl: { type: String, required: false },
     features: {
         fireAlarm: { type: String, required: true },
         balcony: { type: String, required: true },
@@ -65,6 +67,7 @@ const propertySchema = new Schema<IProperty>({
         elevator: { type: String, required: true },
     },
     gallery: { type: [String], required: true },
+    owner: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
 const PropertyModel = mongoose.model<IProperty>('Property', propertySchema)
