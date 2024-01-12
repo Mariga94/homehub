@@ -22,16 +22,6 @@ const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
       <HomeHubLogo />
 
       {/* Mobile Menu */}
-      {checkAuth() ? (
-        <ProfileAvatar />
-      ) : (
-        <div className="block lg:hidden md:hidden">
-          <Button variant="ghost" onClick={() => toggleMobileMenu()}>
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </Button>
-        </div>
-      )}
-
 
       {isMobileMenuOpen && (
         <div
@@ -59,7 +49,19 @@ const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
         </div>
       )}
 
+      
+        <div className="block lg:hidden md:hidden">
+          {checkAuth() ? (
+            <ProfileAvatar />
+          ) : (
+            <Button variant="ghost" onClick={() => toggleMobileMenu()}>
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </Button>
+          )}
+        </div>
+      
       {/* Fullscreen Navigation */}
+
       <div className="hidden lg:flex md:flex ">
         <Button variant="link" asChild className={cn("text-sm ", textcolor)}>
           <Link to="/listing/for-sale">Sale</Link>
@@ -72,7 +74,7 @@ const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
         {checkAuth() ? (
           <ProfileAvatar />
         ) : (
-          <div className="flex flex-row gap-5 ">
+          <div className="hidden lg:flex flex-row gap-5 ">
             <Button variant="outline" asChild className="text-gray-800 text-sm">
               <Link to="/sign-in">Sign In</Link>
             </Button>
@@ -80,6 +82,11 @@ const TopBar = ({ textcolor = "text-white" }: { textcolor?: string }) => {
               <Link to="/sign-up">Sign Up</Link>
             </Button>
           </div>
+          // <div className="block lg:hidden md:hidden">
+          //   <Button variant="ghost" onClick={() => toggleMobileMenu()}>
+          //     {isMobileMenuOpen ? <X /> : <Menu />}
+          //   </Button>
+          // </div>
         )}
       </div>
     </nav>

@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 export function ProfileAvatar() {
   const handleLogout = async () => {
     try {
-      const res = await postData("auth/sign-out", {});
+      const res = await postData("auth/sign-out", "POST", "");
       res && localStorage.removeItem("user");
       window.location.reload();
     } catch (error) {
@@ -28,7 +28,7 @@ export function ProfileAvatar() {
           {/* <AvatarFallback>CN</AvatarFallback> */}
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className=" mx-8 md:mx-4">
+      <DropdownMenuContent className=" mx-3 mt-3 md:mx-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
