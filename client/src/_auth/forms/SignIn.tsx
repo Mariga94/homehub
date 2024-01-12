@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-
 import {
   Form,
   FormControl,
@@ -44,7 +43,7 @@ const SignInForm = () => {
     setIsLoading(true);
     try {
       const res = await postData("auth/sign-in", { ...values });
-      console.log(res);
+      localStorage.setItem("user", JSON.stringify(res));
       setIsLoading(false);
       toast({
         variant: "success",
