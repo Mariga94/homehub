@@ -15,12 +15,16 @@ const authenticateUser = (
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).send('Authentication failed: no token provided');
+    return res.status(401).json({error:'Authentication failed', message:'Authentication failed: no token provided'});
   }
 
   try {
+    const jwtKey = process.env.JWT_KEY;
+    if (!jwtKey) {
+      return res.status(500).json({ error: 'Internal Server Error', message: 'JWT_KEY not defined' });
+    }
     // Verify token and decode the payload
-    const decoded: any = jwt.verify(token, process.env.JWT_KEY!);
+    const decoded: any = jwt.verify(token, jwtKey);
     // Add user ID to the request object
     req.userId = decoded.userId;
     next();
