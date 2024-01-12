@@ -94,7 +94,7 @@ export function SearchForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="max-w-1/2 px-3 flex flex-row items-center justify-center gap-3
+        className="max-w-1/2 px-3 flex lg:flex-row flex-col items-center justify-center gap-3
          py-6 text-[#2C3A61] rounded-md shadow-md bg-slate-100 bg-opacity-60"
       >
         {/**location formfield */}
@@ -102,13 +102,13 @@ export function SearchForm() {
           control={form.control}
           name="location"
           render={({ field }) => (
-            <FormItem className={cn("flex flex-col gap-1 w-1/2")}>
+            <FormItem className={cn("flex flex-col gap-1 lg:w-1/2 ")}>
               <FormLabel>Location</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Location..."
                   {...field}
-                  className={cn("w-80 text-black")}
+                  className={cn("lg:w-80 md:w-[500px] w-[300px] text-black")}
                 />
               </FormControl>
               <FormMessage />
@@ -129,7 +129,7 @@ export function SearchForm() {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        "w-[300px] justify-between text-black",
+                        "w-[300px] md:w-[500px] justify-between text-black",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -177,7 +177,7 @@ export function SearchForm() {
           control={form.control}
           name="propertyType"
           render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
+            <FormItem className="flex flex-col gap-1 md:flex-1">
               <FormLabel>Property Type</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -186,7 +186,7 @@ export function SearchForm() {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        "w-[300px] justify-between",
+                        "w-[300px] md:w-[500px] justify-between",
                         !field.value && "text-muted-foreground"
                       )}
                     >
