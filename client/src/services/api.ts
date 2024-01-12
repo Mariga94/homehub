@@ -1,41 +1,45 @@
 // API BASE CONFIG
 
 const BASE_URL = `http://localhost:3000/api/`;
-const apiKEY = "123456ABCD";
 
-export const fetchData = async (endpoint: string, options = {}) => {
-  const headers = {
-    "x-api-key": apiKEY,
-    ...options,
-  };
+export const fetchData = async (endpoint: string) => {
+
   try {
-    const response = await fetch(`${BASE_URL}/${endpoint}`, { headers });
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "GET",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": '123456ABCD'
+      },
+    });
+
     const data = await response.json();
 
     if (!response.ok) {
       throw new Error(data.message || "Failed to fetch data");
     }
-
     return data;
   } catch (err) {
     console.log(err);
   }
 };
 
-type PostDataType = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
-export const postData = async (endpoint: string, postData: PostDataType) => {
+
+
+
+export const postData = async (endpoint: string, method: string = 'POST', postData: unknown) => {
   try {
     //POST dat to the API
     const response = await fetch(`${BASE_URL}${endpoint}`, {
-      method: "POST",
+      method: method,
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         "x-api-key": '123456ABCD'
       },
-      body: JSON.stringify(postData),
+
+      body: postData ? JSON.stringify(postData) : undefined,
     });
     const data = await response.json();
     if (!response.ok) {
