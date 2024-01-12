@@ -11,10 +11,13 @@ import Profile from "./_dashboard/pages/Profile";
 import MyListing from "./_dashboard/pages/MyListing";
 import Favourites from "./_dashboard/pages/Favourite";
 import CreateListing from "./_dashboard/pages/CreateListing";
-
+import ProtectedRoute from "./privateRoute";
+import Error from "./_404/Error";
+// import { AuthProvider } from "../context/AuthContext";
 function App() {
   return (
     <main className="flex h-screen">
+      {/* <AuthProvider> */}
       <Routes>
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
@@ -30,12 +33,48 @@ function App() {
           <Route path="/sign-up" element={<SignUpForm />} />
         </Route>
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/dashboard/my-profile" element={<Profile />} />
-          <Route path="/dashboard/my-listing" element={<MyListing />} />
-          <Route path="/dashboard/create-listing" element={<CreateListing />} />
-          <Route path="/dashboard/my-favourites" element={<Favourites />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashBoard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/my-profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/my-listing"
+            element={
+              <ProtectedRoute>
+                <MyListing />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/create-listing"
+            element={
+              <ProtectedRoute>
+                <CreateListing />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/my-favourites"
+            element={
+              <ProtectedRoute>
+                <Favourites />
+              </ProtectedRoute>
+            }
+          />
         </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
     </main>
   );
