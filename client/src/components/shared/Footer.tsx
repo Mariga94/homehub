@@ -3,7 +3,7 @@ import { Facebook, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-row px-20 py-24 gap-48 border-t">
+    <footer className="flex lg:flex-row md:flex-row md:gap-8 flex-col px-20 md:px-4 lg:py-24 py-10 lg:gap-48 border-t space-y-11">
       <section className="flex flex-col gap-6">
         <div color="text-[#4A60A1]">
           <HomeHubLogo />
@@ -28,7 +28,6 @@ const Footer = () => {
           <li>Rent</li>
           <li>Sale</li>
           <li>Blog</li>
-
         </ul>
       </section>
       <section className="flex flex-col gap-6">
@@ -38,7 +37,6 @@ const Footer = () => {
           <li>Careers</li>
           <li>Contact</li>
           <li>Blog</li>
-
         </ul>
       </section>
       <section className="flex flex-col gap-6">
@@ -47,8 +45,6 @@ const Footer = () => {
           <li>Terms of service</li>
           <li>Privacy policy</li>
           <li>Security</li>
-          
-
         </ul>
       </section>
     </footer>
