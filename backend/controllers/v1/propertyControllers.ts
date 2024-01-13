@@ -119,5 +119,24 @@ const getPropertiesForRent = async (req: Request, res: Response) => {
     }
 }
 
+export const getLatestPropertiesForSale = async (req: Request, res: Response) => {
+    try {
+        const properties = await PropertyService.getLatestPropertiesForSale()
+        res.status(200).json({ message: 'Properties fetch successfully', properties })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" })
+    }
+}
+
+export const getLatestPropertiesForRent = async (req: Request, res: Response) => {
+    try {
+        const properties = await PropertyService.getLatestPropertiesForRent()
+        res.status(200).json({ message: 'Properties fetch successfully', properties })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" })
+    }
+}
 
 export { createProperty, getProperties, getPropertyById, updateProperty, deleteProperty, getUserProperties, getPropertiesByStatus, getPropertiesForSale, getPropertiesForRent }

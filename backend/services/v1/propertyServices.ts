@@ -95,5 +95,22 @@ const deleteProperty = async (id: string) => {
     }
 };
 
+export const getLatestPropertiesForSale = async () => {
+    try {
+        const properties = await PropertyModel.find({ propertyStatus: 'Sale' })
+        return properties.slice(0, 5)
+    } catch (error: any) {
+        throw new Error(`Error fetching properties: ${error.message}`)
+    }
+}
+
+export const getLatestPropertiesForRent = async () => {
+    try {
+        const properties = await PropertyModel.find({ propertyStatus: 'Rent' })
+        return properties.slice(0, 5)
+    } catch (error: any) {
+        throw new Error(`Error fetching properties: ${error.message}`)
+    }
+}
 
 export { createProperty, updateProperty, deleteProperty, getProperties, getPropertyById, getUserProperties, getPropertiesByStatus, getPropertiesForSale, getPropertiesForRent }
