@@ -23,7 +23,7 @@ const Home = () => {
   const location = useLocation();
 
   const currentUrl = location.pathname;
-  console.log(currentUrl)
+  console.log(currentUrl);
   const handleOnClick = (id: string) => {
     navigate(`listing/${id}`);
   };
@@ -36,7 +36,7 @@ const Home = () => {
         console.error(error);
       }
     };
-    
+
     const fetchLatestPropertiesForRent = async () => {
       try {
         const res = await fetchData("property/latest/for-rent");
@@ -67,7 +67,6 @@ const Home = () => {
             </p>
           </div>
           <div className="lg:hidden md:hidden flex flex-col gap-5 mt-14 items-center justify-center">
-        
             <div className="gap-5 flex flex-row">
               <Button
                 variant="outline"
@@ -96,7 +95,7 @@ const Home = () => {
               <CardTitle>Apartments</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-justify">
+              <p className="text-justify py-5">
                 Our mission is to simplify the apartment hunting process and
                 empower you to find the perfect living space that suits your
                 needs and lifestyle. We understand that finding the right
@@ -110,7 +109,7 @@ const Home = () => {
               <CardTitle>Homes</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-justify">
+              <p className="text-justify py-5">
                 We are committed to simplifying the journey of finding your
                 dream home. We understand that a home is more than just a place;
                 it's where memories are created and stories unfold. Our mission
@@ -124,11 +123,8 @@ const Home = () => {
               <CardTitle>Pricing</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-justify">
-                Transparency is our priority. We believe in providing a clear
-                and fair pricing structure to ensure that you have all the
-                information you need to make informed decisions. we are
-                committed to offering pricing that is competitive,
+              <p className="text-justify py-11">
+                we are committed to offering pricing that is competitive,
                 straightforward, and aligned with the value we provide to our
                 users. Whether you are a homebuyer, seller, or real estate
                 professional, our pricing model is designed to meet your needs.
@@ -140,7 +136,7 @@ const Home = () => {
               <CardTitle>Commercial</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-justify">
+              <p className="text-justify py-9">
                 Our vision is to revolutionize the way businesses find and
                 secure commercial spaces. We understand the unique requirements
                 of commercial real estate, and our platform is tailored to
