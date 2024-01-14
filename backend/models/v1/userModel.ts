@@ -18,7 +18,7 @@ const userSchema = new Schema<IUser>({
   title: { type: String, required: false },
   phoneNumber: { type: String, required: false },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, select: false },
+  password: { type: String, required: true},
   personalInfo: { type: String, required: false },
   createdAt: { type: Date, default: Date.now },
   properties: [{ type: Schema.Types.ObjectId, ref: 'Property' }]
