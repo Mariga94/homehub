@@ -43,8 +43,10 @@ if (process.env.NODE_ENV === 'development') {
     app.use(loggerMiddleware)
 }
 const allowedOrigins = [
-    'http://127.0.0.1:5173',
-    'https://homehub-9356n00ej-mariga94.vercel.app/'
+    'http://localhost:5173',
+    'https://homehub-9356n00ej-mariga94.vercel.app',
+    'https://homehub-9356n00ej-mariga94.vercel.app/',
+    
 
 ]
 const corsOptions = {
