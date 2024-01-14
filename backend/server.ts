@@ -44,10 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://homehub-9356n00ej-mariga94.vercel.app',
-    'https://homehub-9356n00ej-mariga94.vercel.app/',
-    
-
+    'https://homehub-tan.vercel.app'
 ]
 const corsOptions = {
     credentials: true,
