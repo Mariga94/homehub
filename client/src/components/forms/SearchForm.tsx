@@ -31,11 +31,11 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const locations = [
-  { label: "Nairobi", value: "nairobi" },
-  { label: "Kiambu", value: "kiambu" },
-  { label: "Nanyuki", value: "nanyuki" },
-] as const;
+// const locations = [
+//   { label: "Nairobi", value: "nairobi" },
+//   { label: "Kiambu", value: "kiambu" },
+//   { label: "Nanyuki", value: "nanyuki" },
+// ] as const;
 
 const rooms = [
   { label: "1", value: 1 },
