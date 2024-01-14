@@ -23,8 +23,9 @@ const Home = () => {
   const location = useLocation();
 
   const currentUrl = location.pathname;
+  console.log(currentUrl)
   const handleOnClick = (id: string) => {
-    navigate(`${currentUrl}/${id}`);
+    navigate(`listing/${id}`);
   };
   useEffect(() => {
     const fetchLatestPropertiesForSale = async () => {
@@ -35,7 +36,7 @@ const Home = () => {
         console.error(error);
       }
     };
-    fetchLatestPropertiesForSale();
+    
     const fetchLatestPropertiesForRent = async () => {
       try {
         const res = await fetchData("property/latest/for-rent");
@@ -44,6 +45,7 @@ const Home = () => {
         console.error(error);
       }
     };
+    fetchLatestPropertiesForSale();
     fetchLatestPropertiesForRent();
   }, []);
   return (
