@@ -4,7 +4,7 @@ const authenticateAPIKey = (req: Request, res: Response, next: NextFunction) => 
     const apiKey = req.headers['x-api-key'];
 
     if (!apiKey) {
-        res.status(401).json({ error: "Unauthorized API key missing" });
+       return res.status(401).json({ error: "Unauthorized API key missing" });
     }
 
     const isValidKey = validateApiKey(apiKey)
