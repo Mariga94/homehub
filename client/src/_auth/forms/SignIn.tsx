@@ -42,7 +42,7 @@ const SignInForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const res = await postData("auth/sign-in", { ...values });
+      const res = await postData("auth/sign-in", "POST", { ...values });
       localStorage.setItem("user", JSON.stringify(res));
       setIsLoading(false);
       toast({

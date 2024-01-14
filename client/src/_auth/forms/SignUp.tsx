@@ -49,7 +49,7 @@ const SignUpForm = () => {
     setIsLoading(true);
     try {
       console.log(values);
-      await postData("auth/sign-up", { ...values });
+      await postData("auth/sign-up", "POST", { ...values });
       setIsLoading(false);
       toast({
         variant: "success",
