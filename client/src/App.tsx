@@ -36,7 +36,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute redirectTo="/">
                 <DashBoard />
               </ProtectedRoute>
             }
@@ -44,7 +44,8 @@ function App() {
           <Route
             path="/dashboard/my-profile"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute redirectTo="/">
+                
                 <Profile />
               </ProtectedRoute>
             }
@@ -52,7 +53,7 @@ function App() {
           <Route
             path="/dashboard/my-listing"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute redirectTo="/">
                 <MyListing />
               </ProtectedRoute>
             }
@@ -60,7 +61,7 @@ function App() {
           <Route
             path="/dashboard/create-listing"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute redirectTo="/">
                 <CreateListing />
               </ProtectedRoute>
             }
@@ -68,7 +69,7 @@ function App() {
           <Route
             path="/dashboard/my-favourites"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute redirectTo="/">
                 <Favourites />
               </ProtectedRoute>
             }
