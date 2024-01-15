@@ -1,29 +1,29 @@
 import HomeHubLogo from "./Logo";
 import { Facebook, Linkedin, Instagram } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   return (
-    <footer className="flex lg:flex-row md:flex-row md:gap-8 flex-col px-20 md:px-4 lg:py-24 py-10 lg:gap-48 border-t space-y-11">
-      <section className="flex flex-col gap-6">
-        <div color="text-[#4A60A1]">
+    <footer className="container flex flex-col space-y-6 pb-20 lg:flex-row lg:items-start lg:px-28 md:space-x-6 justify-between md:flex-row  text-gray-500 py-6">
+      <section className="flex flex-col gap-3">
+        <div color="#000">
           <HomeHubLogo />
         </div>
-
-        <div className="flex flex-col gap-4">
-          <h2>Contact Us</h2>
-          <p>Call: 123 300 500</p>
-          <p>Nairobi, Kenya</p>
-          <p>Email: homehub@email.com</p>
-          <div className="flex flex-row gap-3 text-gray-600">
-            <Facebook />
-            <Linkedin />
-            <Instagram />
-          </div>
+        <p className="lg:w-[25rem] md:w-[16rem] text-justify">
+          Take advantage of our platform to find your desired home to buy or
+          rent.
+        </p>
+        <div className="flex flex-row gap-3">
+          <Facebook fill="#1877F2" className="border-0" />
+          <Linkedin fill="#0A66C2" />
+          <Instagram fill="#E4405F" />
         </div>
+        <div> © {new Date().getFullYear()} All rights reserved.</div>
       </section>
       <section className="flex flex-col gap-6">
-        <h2>Features</h2>
-        <ul className="flex flex-col gap-4 text-gray-600">
+        <h3>Features</h3>
+        <ul className="flex flex-col gap-3">
           <li>Home</li>
           <li>Rent</li>
           <li>Sale</li>
@@ -31,8 +31,8 @@ const Footer = () => {
         </ul>
       </section>
       <section className="flex flex-col gap-6">
-        <h2>Company</h2>
-        <ul className="flex flex-col gap-4 text-gray-600">
+        <h3>Company</h3>
+        <ul className="flex flex-col gap-3">
           <li>About Us</li>
           <li>Careers</li>
           <li>Contact</li>
@@ -40,12 +40,12 @@ const Footer = () => {
         </ul>
       </section>
       <section className="flex flex-col gap-6">
-        <h2>Terms and policies</h2>
-        <ul className="flex flex-col gap-4 text-gray-600">
-          <li>Terms of service</li>
-          <li>Privacy policy</li>
-          <li>Security</li>
-        </ul>
+        <h3>Subscribe</h3>
+        <p>Subsribe to get latest property, blog, news from us</p>
+        <div className="flex w-full max-w-sm items-center space-x-2">
+          <Input type="email" placeholder="Email" />
+          <Button type="submit">Subscribe</Button>
+        </div>
       </section>
     </footer>
   );
