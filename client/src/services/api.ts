@@ -1,5 +1,6 @@
 // API BASE CONFIG
 //'http://localhost:3000/api/'
+// `https://homehubapi.onrender.com/api/`;
 const BASE_URL = `https://homehubapi.onrender.com/api/`;
 
 export const fetchData = async (endpoint: string) => {

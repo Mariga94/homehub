@@ -148,7 +148,7 @@ const Home = () => {
         </section>
       </section>
 
-      <section className="flex flex-col px-10 lg:px-20 py-10 lg:py-24 m-auto gap-10 items-center justify-center bg-slate-100">
+      <section className="flex flex-col px-10 lg:px-20 py-10 lg:py-0 m-auto gap-4 items-center bg-slate-100">
         <h2>Latest House on Sale</h2>
         <p className="text-[#889099] text-center">
           Checkout latest houses, apartment and commercial properties on sale.
@@ -169,7 +169,7 @@ const Home = () => {
         <p className="text-[#889099] text-center">
           Checkout latest houses, apartment and commercial properties on Rent.
         </p>
-        <section className="flex gap-4 container overflow-x-auto hide-scroll-bar ">
+        {latestPropertiesForRent.length > 0 && <section className="flex gap-4 container overflow-x-auto hide-scroll-bar ">
           {latestPropertiesForRent.map((property) => (
             <PropertyCard
               key={property._id}
@@ -177,7 +177,7 @@ const Home = () => {
               handleOnClick={handleOnClick}
             />
           ))}
-        </section>
+        </section>}
       </section>
       <Footer />
     </div>

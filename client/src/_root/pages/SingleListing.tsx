@@ -29,7 +29,7 @@ const getDefaultProperty = (): PropertyInterface => {
     price: 0,
     area: "",
     size: "",
-    videoURL: "",
+    videoUrl: "",
     features: {
       balcony: false,
       elevator: false,
@@ -115,13 +115,13 @@ const SingleListingPage = () => {
           </div>
         </section>
 
-        {property.videoURL && (
+        {property.videoUrl && (
           <section>
             <iframe
               className="w-full"
               width="560"
               height="315"
-              src={property.videoURL}
+              src={property.videoUrl}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>

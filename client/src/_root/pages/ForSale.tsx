@@ -2,16 +2,6 @@
  * Property page for properties to be sold
  */
 
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-
 
 import PropertyCard from "@/components/shared/PropertyCard";
 import TopBar from "@/components/shared/TopBar";
@@ -50,39 +40,18 @@ const ForSale = () => {
       <section className="flex flex-col gap-4 mt-10">
         <h2 className="px-6">Properties For Sale In Kenya</h2>
         <section className="container mx-auto p-4 flex flex-wrap">
-          {propertiesForSale.map((property) => (
+          {propertiesForSale.length ? 
+          propertiesForSale.map((property) => (
             <PropertyCard
               key={property._id}
               property={property}
               handleOnClick={handleOnClick}
             />
-          ))}
+          )): <>
+          <p> No properties for sale</p>
+          </>}
         </section>
 
-        <Pagination className="mb-6">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
       </section>
       <Footer />
     </div>

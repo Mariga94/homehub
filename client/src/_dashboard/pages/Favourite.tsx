@@ -1,6 +1,6 @@
 
 const Favourites = () => {
-  return <div>Favourite</div>;
+  return <div className="flex flex-col items-center justify-center">Feature in development</div>;
 };
 
 export default Favourites;

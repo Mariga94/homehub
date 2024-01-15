@@ -44,7 +44,7 @@ export interface PropertyInterface {
   price: number;
   area: string;
   size: string;
-  videoURL: string;
+  videoUrl: string;
   features: featuresInterface;
   gallery: string[];
 }

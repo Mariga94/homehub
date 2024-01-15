@@ -73,7 +73,7 @@ const formSchema = z.object({
   price: z.coerce.number(),
   area: z.string(),
   size: z.string(),
-  videoURL: z.string(),
+  videoUrl: z.string(),
   features: featuresSchema,
   gallery: z.array(z.any()),
 });
@@ -128,7 +128,7 @@ const CreateListing = () => {
       area: "",
       size: "",
       price: 0,
-      videoURL: "",
+      videoUrl: "",
       features: {
         balcony: false,
         elevator: false,
@@ -170,12 +170,12 @@ const CreateListing = () => {
     try {
       const uploadedImages = await uploadImage(values.gallery);
       const updatedValues = { ...values, gallery: uploadedImages };
-
       const res = await postData("property", "POST", { ...updatedValues });
       toast({
         variant: "success",
         description: `${res.message}`,
       });
+      console.log(res)
       form.reset();
       setPreview([]);
     } catch (error) {
@@ -432,7 +432,7 @@ const CreateListing = () => {
             />
             <FormField
               control={form.control}
-              name="videoURL"
+              name="videoUrl"
               render={({ field }) => (
                 <FormItem className="flex flex-col lg:w-[300px] md:w-[300px] w-full col-span-1">
                   <FormLabel>Video URL</FormLabel>
