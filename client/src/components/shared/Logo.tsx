@@ -1,10 +1,9 @@
-import { Home } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../../../public/logos/logo-no-background.svg";
 const HomeHubLogo = () => {
   return (
-    <Link to="/" className="flex flex-row items-center mb-2 cursor-pointer">
-      <Home className="" />
-      <div className=" font-semibold inline p-0 mt-2 ">HomeHub</div>
+    <Link to="/">
+      <img src={logo} alt="" className="h-8" />
     </Link>
   );
 };
