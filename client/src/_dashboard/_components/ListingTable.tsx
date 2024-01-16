@@ -17,17 +17,35 @@ import { MoreHorizontal } from "lucide-react";
 import { addCommasToNumbers } from "@/services/addCommasToNumbers";
 
 interface featuresInterface {
-  balcony: boolean;
-  elevator: boolean;
-  pool: boolean;
-  petFriendly: boolean;
-  gym: boolean;
-  fireAlarm: boolean;
+  balcony?: boolean;
+  elevator?: boolean;
+  pool?: boolean;
+  petFriendly?: boolean;
+  gym?: boolean;
+  garden?: boolean;
+  swimmingPool?: boolean;
+  exposedBrick?: boolean;
+  cityView?: boolean;
+  rooftopAccess?: boolean;
+  oceanView?: boolean;
+  scenicView?: boolean;
+  fireAlarm?: boolean;
+  wraparoundDeck?: boolean;
+  fireplace?: boolean;
+  hikingTrails?: boolean;
+  highCeilings?: boolean;
+  backyard?: boolean;
+  spaciousKitchen?: boolean;
+  studyRoom?: boolean;
+  garage?: boolean;
+  parking?: boolean;
+  securitySystem?: boolean;
 }
 
 interface locationInterface {
-  address: string;
+  address?: string;
   city: string;
+  state: string;
   country: string;
 }
 
