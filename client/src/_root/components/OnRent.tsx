@@ -1,7 +1,7 @@
 import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
 import PropertyCard from "@/components/shared/PropertyCard";
 import { fetchData } from "@/services/api";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const OnRent = () => {
