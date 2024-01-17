@@ -90,7 +90,7 @@ const TopBar = () => {
     //   </div>
     // </nav>
 
-    <nav className="relative h-16 flex flex-row items-center justify-between lg:px-10 md:px-10 px-5 shadow-sm">
+    <nav className="relative h-16 flex flex-row items-center justify-between px-5 shadow-sm">
       <div className="flex flex-row items-center justify-between w-full lg:hidden md:hidden">
         <div>
           <img src={logo} alt="" className="h-8" />

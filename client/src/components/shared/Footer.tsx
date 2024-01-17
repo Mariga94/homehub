@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "../ui/separator";
 const Footer = () => {
   return (
-    <footer className="container flex flex-col pb-5 text-gray-500 ">
+    <footer className="flex flex-col pb-5 rounded-lg mb-9">
+      <Separator />
       <div className=" flex flex-col space-y-6  lg:flex-row lg:items-start lg:px-0 md:space-x-6 justify-between md:flex-row   py-6">
         <section className="flex flex-col gap-3 lg:pt-5">
           <div color="#000">
@@ -44,7 +45,7 @@ const Footer = () => {
         </section>
       </div>
       <Separator />
-      <div className="flex justify-between items-center py-3">
+      <div className="flex justify-between items-center py-1">
         <div> © {new Date().getFullYear()} All rights reserved.</div>
         <div className="flex flex-row gap-3">
           <Facebook />
