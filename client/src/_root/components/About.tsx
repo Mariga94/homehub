@@ -25,7 +25,7 @@ const About = () => {
 
       <div className="flex flex-col items-center gap-5">
         <h2>Why Choose Us.</h2>
-        <div className="flex lg:flex-row md:flex-row flex-col items-center gap-5">
+        <div className="flex lg:flex-row md:flex-col flex-col items-center gap-5">
           <div className="about-card">
             <img src={award} alt="" className="h-24 w-24" />
             <h3>Trusted By Thousands</h3>
