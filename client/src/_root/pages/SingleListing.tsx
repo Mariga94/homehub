@@ -77,74 +77,7 @@ const SingleListingPage = () => {
   }, [id]);
 
   return (
-    // <div className="w-full">
-    //   <section className="flex flex-col mt-10 lg:mb-24 mb-10 lg:mx-20 mx-4 gap-4">
-    //     <div>
-    //       <h2>{property?.title}</h2>
-    //       <div className="flex flex-row gap-2">
-    //         <MapPinIcon className="text-gray-600" />
-    //         <p>
-    //           {property?.location.address}, {property?.location.city}
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="relative">
-    //       <div className="absolute z-50 top-2 left-2 flex flex-row gap-4">
-    //         <Badge variant="default" className={cn("rounded-md px-5 py-1")}>
-    //           {property?.propertyStatus}
-    //         </Badge>
-    //         <Badge variant="default" className={cn("rounded-md px-5 py-1")}>
-    //           {property?.type}
-    //         </Badge>
-    //       </div>
-    //       <SingleImageCarousel imageUrls={property?.gallery} />
-    //     </div>
-
-    //     <section className="flex flex-col gap-4 mt-10">
-    //       {/* Short Description */}
-    //       <div className="rounded-md border-2 px-2 py-4">
-    //         <div className="flex flex-row flex-wrap gap-4">
-    //           <div className="flex flex-row gap-2">
-    //             <BedIcon className="text-gray-600" />
-    //             <p>{property?.bedrooms} Bedrooms</p>
-    //           </div>
-    //           <div className="flex flex-row gap-2">
-    //             <BathIcon className="text-gray-600" />
-    //             <p>{property?.bathrooms} Bathrooms</p>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       {/* long description */}
-    //       <div>
-    //         <h2>Description</h2>
-    //         <p>{property.description}</p>
-    //       </div>
-    //       {/* features */}
-    //       <div>
-    //         <h2>Features</h2>
-    //         <div className="flex flex-col gap-4">
-    //           {Object.keys(property.features).map((val) => (
-    //             <p>{val}</p>
-    //           ))}
-    //         </div>
-    //       </div>
-    //     </section>
-
-    //     {property.videoUrl && (
-    //       <section>
-    //         <iframe
-    //           className="w-full"
-    //           width="560"
-    //           height="315"
-    //           src={property.videoUrl}
-    //           title="YouTube video player"
-    //           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    //         ></iframe>
-    //       </section>
-    //     )}
-    //   </section>
-    // </div>
-
+ 
     <div className="flex flex-col gap-10">
       <section className="flex flex-col gap-2 lg:flex-row md:flex-row md:items-center lg:items-center justify-between mt-10">
         <div className="flex flex-col justify-center items-start">
