@@ -1,4 +1,3 @@
-import Footer from "@/components/shared/Footer";
 import Jumbotron from "../components/Jumbotron"
 import About from "../components/About";
 import FeaturedProperty from "../components/FeaturedProperty";
@@ -8,7 +7,6 @@ const Home = () => {
       <Jumbotron />
       <About />
       <FeaturedProperty />
-      <Footer />
     </div>
   );
 };
