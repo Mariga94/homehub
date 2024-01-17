@@ -61,8 +61,12 @@ const TopBar = () => {
         <ProfileAvatar />
       ) : (
         <div className="hidden lg:flex md:flex flex-row gap-x-5">
-          <Button variant="outline">Login</Button>
-          <Button>Sign up</Button>
+          <Button asChild variant="outline">
+            <Link to='/sign-in'>Login</Link>
+          </Button>
+          <Button asChild>
+            <Link to='/sign-up'>Sign up</Link>
+          </Button>
         </div>
       )}
     </nav>
