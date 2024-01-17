@@ -4,7 +4,7 @@ import shield from "../../../public/images/shield_558300.png";
 import mortgage from "../../../public/images/mortgage_9167838.png";
 const About = () => {
   return (
-    <div className="container flex flex-col gap-10">
+    <div className="flex flex-col gap-10">
       <div className="flex flex-col lg:flex-row md:flex-row lg:gap-10 md:gap-x-20 gap-y-5 items-center">
         <div className="flex-1 ">
           <img src={villa} alt="" className="rounded-lg " />
