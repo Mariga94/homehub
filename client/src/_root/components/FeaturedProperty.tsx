@@ -18,7 +18,7 @@ const FeaturedProperty = () => {
     navigate(`listing/${id}`);
   };
   return (
-    <section className="container flex flex-col items-center ">
+    <section className="flex flex-col items-center ">
       <h2 className="mb-2 text-[1.875rem]">Featured Properties</h2>
       <p className="mb-12">Handpicked properties by our team</p>
       <div className="flex flex-row gap-6 overflow-x-scroll overscroll-contain w-full hide-scroll-bar">

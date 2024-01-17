@@ -1,9 +1,8 @@
-import TopBar from "@/components/shared/TopBar";
 import { SearchPropertyForm } from "@/components/shared/SearchProperty";
 const Jumbotron = () => {
   return (
-    <header className="lg:container md:container">
-      <TopBar />
+    <header className="">
+
       <section className="relative overflow-hidden bg-no-repeat bg-custom-image bg-cover bg-center h-[40rem] rounded-lg md:p-20 pt-10">
         <section className="flex lg:block flex-col gap-7 absolute md:w-full md:left-0 md:right-0 md:items-center md:px-10">
           <h1 className="text-4xl lg:text-[3.5rem] lg:leading-[4rem] md:text-[3.0rem] lg:w-[40rem] font-semibold lg:text-left 
