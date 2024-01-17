@@ -26,7 +26,7 @@ const PropertyCard = ({
 }) => {
   return (
     <Card
-      className={cn("w-80 flex-shrink-0 ")}
+      className={cn("lg:w-96 w-full md:w-auto flex-shrink-0 ")}
       id={property._id}
       onClick={() => handleOnClick(property._id)}
     >
