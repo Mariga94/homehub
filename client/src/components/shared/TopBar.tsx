@@ -14,38 +14,44 @@ const TopBar = () => {
   };
 
   return (
-  
-
-    <nav className="relative h-16 flex flex-row items-center justify-between px-5 shadow-sm">
+    <nav className={`relative h-16 flex flex-row items-center justify-between px-5 shadow-sm ${isMobileMenuOpen}`}>
       <div className="flex flex-row items-center justify-between w-full lg:hidden md:hidden">
-        <HomeHubLogo/>
-        {!isMobileMenuOpen ? (
-          <Menu onClick={toggleMobileMenu} />
-        ) : (
-          <X onClick={toggleMobileMenu} />
+        <HomeHubLogo />
+        {!checkAuth() && (
+          <div>
+            {!isMobileMenuOpen ? (
+              <Menu onClick={toggleMobileMenu} />
+            ) : (
+              <X onClick={toggleMobileMenu} />
+            )}
+          </div>
         )}
       </div>
 
       {isMobileMenuOpen && (
         <div
-          className={` flex flex-col gap-y-6 p-5 absolute w-full z-50 top-16 right-0 bg-white transition-transform duration-300 transform ${
-            isMobileMenuOpen ? "translate-y-0" : "translate-y-full"
-          } ease-in-out`}
+          className={`bg-white flex flex-col gap-y-6 p-5 absolute w-full z-50 top-16 right-0
+          cursor-pointer
+           `}
         >
-          <Link to="/listing/for-sale" className="py-2 px-4 hover:bg-gray-300">
+          <Link to="/listing/for-sale" className="py-2 px-4 hover:bg-blue-100">
             Sale
           </Link>
-          <Link to="/listing/for-rent" className="py-2 px-4 hover:bg-gray-300">
+          <Link to="/listing/for-rent" className="py-2 px-4 hover:bg-blue-100">
             Rent
           </Link>
-          <div className="flex flex-row gap-x-5">
-            <Button variant="outline">Login</Button>
-            <Button>Sign up</Button>
+          <div className="flex flex-row gap-x-5 bg">
+            <Button asChild variant="outline">
+              <Link to="/sign-in">Login</Link>
+            </Button>
+            <Button asChild>
+              <Link to="/sign-up">Sign up</Link>
+            </Button>
           </div>
         </div>
       )}
       <div className="hidden lg:flex md:flex">
-      <HomeHubLogo/>
+        <HomeHubLogo />
       </div>
       <div className="hidden lg:flex md:flex flex-row gap-x-5">
         <Button variant="ghost" asChild>
@@ -62,10 +68,10 @@ const TopBar = () => {
       ) : (
         <div className="hidden lg:flex md:flex flex-row gap-x-5">
           <Button asChild variant="outline">
-            <Link to='/sign-in'>Login</Link>
+            <Link to="/sign-in">Login</Link>
           </Button>
           <Button asChild>
-            <Link to='/sign-up'>Sign up</Link>
+            <Link to="/sign-up">Sign up</Link>
           </Button>
         </div>
       )}
