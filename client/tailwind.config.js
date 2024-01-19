@@ -9,6 +9,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    
   ],
   theme: {
     container: {
@@ -20,7 +21,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'custom-image': "url('/public/images/jumbotron.jpg')"
+        'custom-image': "url('/public/images/pic.png')"
       },
       colors: {
         border: "hsl(var(--border))",
