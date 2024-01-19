@@ -1,18 +1,19 @@
 /**
  * Property page for properties to be sold
  */
-
-
 import PropertyCard from "@/components/shared/PropertyCard";
-import TopBar from "@/components/shared/TopBar";
-import Footer from "@/components/shared/Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
-
+import { PropertyInterface } from "types";
+import { dummyData } from "../data";
+import { Button } from "@/components/ui/button";
 const ForSale = () => {
-  const [propertiesForSale, setPropertiesForSale] = useState<PropertyInterface[]>([])
+  const [propertiesForSale, setPropertiesForSale] = useState<
+    PropertyInterface[]
+  >([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const productsPerPage: number = 6;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,39 +22,69 @@ const ForSale = () => {
     navigate(`${currentUrl}/${id}`);
   };
 
+  const handlePageChange = (page: number): void => {
+    setCurrentPage(page);
+  };
+
+  const totalProducts: number = propertiesForSale?.length || 0;
+  const totalPages: number = Math.ceil(totalProducts / productsPerPage);
+
+  // Calculate the index range of products to display for the current page
+  const indexOfLastProduct: number = currentPage * productsPerPage;
+  const indexOfFirstProduct: number = indexOfLastProduct - productsPerPage;
+  const currentProperties: PropertyInterface[] | undefined =
+    propertiesForSale?.slice(indexOfFirstProduct, indexOfLastProduct);
+
   useEffect(() => {
-    const fetchPropertyForSale =async () => {
+    const fetchPropertyForSale = async () => {
       try {
-        const res = await fetchData('property/for-sale');
-        setPropertiesForSale(res.properties)
+        // const res = await fetchData('property/for-sale');
+        // setPropertiesForSale(res.properties)
+        setPropertiesForSale(dummyData);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
-    fetchPropertyForSale()
-  },[])
+    };
+    fetchPropertyForSale();
+  }, []);
 
   return (
-    <div className="w-full text-gray-700">
-      <TopBar textcolor="text-gray-700" />
+    <div className="flex flex-col w-full gap-6">
       {/* <SearchForm /> */}
-      <section className="flex flex-col gap-4 mt-10">
-        <h2 className="px-6">Properties For Sale In Kenya</h2>
-        <section className="container mx-auto p-4 flex flex-wrap">
-          {propertiesForSale.length ? 
-          propertiesForSale.map((property) => (
-            <PropertyCard
-              key={property._id}
-              property={property}
-              handleOnClick={handleOnClick}
-            />
-          )): <>
-          <p> No properties for sale</p>
-          </>}
+      <section className="flex flex-col mx-auto gap-4 mt-10">
+        <h2 className="">Properties For Sale In Kenya</h2>
+        <section className="flex flex-row gap-6  flex-wrap ">
+          {propertiesForSale.length ? (
+            currentProperties.map((property) => (
+              <PropertyCard
+                key={property._id}
+                property={property}
+                handleOnClick={handleOnClick}
+              />
+            ))
+          ) : (
+            <>
+              <p> No properties for sale</p>
+            </>
+          )}
         </section>
-
       </section>
-      <Footer />
+      <section className=" ">
+        <ul className="flex flex-row justify-center gap-4">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <li
+              key={i + 1}
+              className={`${
+                currentPage === i + 1 ? "bg-primary text-white" : ""
+              }`}
+            >
+              <Button variant="ghost" onClick={() => handlePageChange(i + 1)}>
+                {i + 1}
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 };

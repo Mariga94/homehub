@@ -78,7 +78,11 @@ const SignInForm = () => {
               <FormItem className={cn(" lg:w-1/2 w-3/4")}>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input
+                    placeholder="Enter your email"
+                    {...field}
+                    autoComplete="true"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,7 +95,11 @@ const SignInForm = () => {
               <FormItem className={cn(" lg:w-1/2 w-3/4")}>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input
+                    placeholder="Enter your password"
+                    {...field}
+                    autoComplete="true"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,7 +111,7 @@ const SignInForm = () => {
             </Link>
           </div>
           <Button type="submit" className={cn("lg:w-1/2 w-3/4")}>
-            {isLoading ? "Loading..." : "Sign In"}
+            {isLoading ? "Signing In..." : "Sign In"}
           </Button>
           <div>
             <p>

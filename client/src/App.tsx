@@ -13,10 +13,11 @@ import Favourites from "./_dashboard/pages/Favourite";
 import CreateListing from "./_dashboard/pages/CreateListing";
 import ProtectedRoute from "./privateRoute";
 import Error from "./_404/Error";
+import MySingleListing from "./_dashboard/pages/mysingleListing";
 // import { AuthProvider } from "../context/AuthContext";
 function App() {
   return (
-    <main className="flex h-screen">
+    <main className="flex">
       {/* <AuthProvider> */}
       <Routes>
         <Route element={<RootLayout />}>
@@ -59,6 +60,14 @@ function App() {
             }
           />
           <Route
+            path="/dashboard/my-listing/:id"
+            element={
+              <ProtectedRoute redirectTo="/">
+               <MySingleListing />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard/create-listing"
             element={
               <ProtectedRoute redirectTo="/">
@@ -74,6 +83,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

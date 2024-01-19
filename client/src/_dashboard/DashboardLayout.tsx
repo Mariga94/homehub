@@ -1,17 +1,30 @@
 import { Outlet } from "react-router-dom";
-// import TopNav from "./_components/TopNav";
-import TopBar from "@/components/shared/TopBar";
 import LeftSidebar from "./_components/LeftSidebar";
+import { DashBoardTopNavigation } from "./_components";
+import { useState, MouseEventHandler } from "react";
+
 const DashboardLayout = () => {
+  const [isToggled, setIsToggled] = useState<boolean>(false);
+
+  const toggleLeftBarNavigation: MouseEventHandler<
+    SVGSVGElement | HTMLDivElement
+  > = (): void => {
+    setIsToggled(!isToggled);
+  };
+
   return (
-    <div className="w-full flex flex-col">
-      <TopBar textcolor="text-gray-700" />
-      <div className="flex lg:flex-row md:flex-row flex-col">
-        <LeftSidebar />
-        <div className="w-full">
-          <div className="overflow-auto max-h-screen">
-            <Outlet />
-          </div>
+    <div className="flex flex-row w-full  bg-slate-100">
+      <LeftSidebar
+        isToggled={isToggled}
+        toggleLeftBarNavigation={toggleLeftBarNavigation}
+      />
+      <div className="w-full ">
+        <DashBoardTopNavigation
+          isToggled={isToggled}
+          toggleLeftBarNavigation={toggleLeftBarNavigation}
+        />
+        <div className=" overflow-y-auto">
+          <Outlet />
         </div>
       </div>
     </div>

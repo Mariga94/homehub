@@ -15,40 +15,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
 import { addCommasToNumbers } from "@/services/addCommasToNumbers";
-
-interface featuresInterface {
-  balcony: boolean;
-  elevator: boolean;
-  pool: boolean;
-  petFriendly: boolean;
-  gym: boolean;
-  fireAlarm: boolean;
-}
-
-interface locationInterface {
-  address: string;
-  city: string;
-  country: string;
-}
-
-export interface PropertyInterface {
-  _id: string;
-  title: string;
-  description: string;
-  type: string;
-  propertyStatus: string;
-  location: locationInterface;
-  bedrooms: number;
-  bathrooms: number;
-  floors: number;
-  price: number;
-  area: string;
-  size: string;
-  videoUrl: string;
-  features: featuresInterface;
-  gallery: string[];
-}
+import { useNavigate } from "react-router-dom";
+import { PropertyInterface } from "types";
 type handleDeletePropertyfunction = (id: string) => void;
+
 const ListingTable = ({
   data,
   handleDeleteProperty,
@@ -56,25 +26,39 @@ const ListingTable = ({
   data: PropertyInterface[];
   handleDeleteProperty: handleDeletePropertyfunction;
 }) => {
+  const navigate = useNavigate();
+  function handleTableRowClick(id: string | undefined): void {
+    navigate(`${id}`);
+  }
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className=""></TableHead>
-          <TableHead className="font-semibold">Title</TableHead>
-          <TableHead className="font-semibold">Status</TableHead>
-          <TableHead className="font-semibold">Type</TableHead>
-          <TableHead className="font-semibold">Location</TableHead>
-          <TableHead className="font-semibold">Price</TableHead>
+    <Table className="bg-white rounded-lg">
+      <TableCaption>A list of your listings.</TableCaption>
+      <TableHeader className="bg-primary text-white">
+        <TableRow className="text-white">
+          <TableHead className="font-semibold text-gray-100">Title</TableHead>
+          <TableHead className="font-semibold text-gray-100"></TableHead>
+          <TableHead className="font-semibold text-gray-100">Status</TableHead>
+          <TableHead className="font-semibold text-gray-100">Type</TableHead>
+          <TableHead className="font-semibold text-gray-100">
+            Location
+          </TableHead>
+          <TableHead className="font-semibold text-gray-100">Price</TableHead>
+          <TableHead className="font-semibold text-gray-100"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {data.map((property) => {
           return (
-            <TableRow key={property._id}>
+            <TableRow
+              key={property._id}
+              onClick={() => handleTableRowClick(property._id)}
+            >
               <TableCell>
-                <img src={property.gallery[0]} alt="" className="h-20 w-26" />
+                <img
+                  src={property.gallery[0]}
+                  alt=""
+                  className="h-20 w-30 rounded-sm"
+                />
               </TableCell>
               <TableCell className="">{property.title}</TableCell>
               <TableCell>{property.propertyStatus}</TableCell>

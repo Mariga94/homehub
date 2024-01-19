@@ -37,6 +37,23 @@ export interface IProperty extends Document {
         petFriendly: string;
         gym: string;
         elevator: string
+        garden: string;
+        swimmingPool: string;
+        exposedBrick: string;
+        cityView: string;
+        rooftopAccess: string;
+        oceanView: string;
+        scenicView: string;
+        wraparoundDeck: string;
+        fireplace: string;
+        hikingTrails: string;
+        highCeilings: string;
+        backyard: string;
+        spaciousKitchen: string;
+        studyRoom: string;
+        garage: string;
+        parking: string;
+        securitySystem: string;
     };
     gallery: string[];
     owner: { type: string, ref: string, }
@@ -65,8 +82,25 @@ const propertySchema = new Schema<IProperty>({
         petFriendly: { type: String, required: true },
         gym: { type: String, required: true },
         elevator: { type: String, required: true },
+        garden: { type: String, required: true },
+        swimmingPool: { type: String, required: true },
+        exposedBrick: { type: String, required: true },
+        cityView: { type: String, required: true },
+        rooftopAccess: { type: String, required: true },
+        oceanView: { type: String, required: true },
+        scenicView: { type: String, required: true },
+        wraparoundDeck: { type: String, required: true },
+        fireplace: { type: String, required: true },
+        hikingTrails: { type: String, required: true },
+        highCeilings: { type: String, required: true },
+        backyard: { type: String, required: true },
+        spaciousKitchen: { type: String, required: true },
+        studyRoom: { type: String, required: true },
+        garage: { type: String, required: true },
+        parking: { type: String, required: true },
+        securitySystem: { type: String, required: true },
     },
-    gallery: { type: [String], required: true },
+    gallery: { type: [String], required: false },
     owner: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 

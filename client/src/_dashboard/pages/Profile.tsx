@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { fetchData, postData } from "@/services/api";
 import { useEffect, useState } from "react";
 
@@ -68,8 +68,8 @@ const Profile = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsSubmitting(true);
-      const res = await postData("user/update-profile", "PUT", { ...values });
-      console.log(res);
+      await postData("user/update-profile", "PUT", { ...values });
+      form.reset()
     } catch (error) {
       console.error(error);
     } finally {
@@ -77,13 +77,13 @@ const Profile = () => {
     }
   };
   return (
-    <div className="flex lg:flex-row md:flex-col flex-col items-start pt-5 px-5 lg:px-5  w-full lg:space-x-6 space-y-6 ">
+    <div className="flex lg:flex-row flex-col min-h-[93vh] items-start pt-5 px-5 lg:px-5  w-full lg:space-x-6 space-y-6 ">
       <div className="lg:w-1/4 w-full">
         <h2>Personal Information</h2>
         <p>Update your personal information</p>
       </div>
       <div className="lg:w-3/4 w-full ">
-        <div className="flex flex-col lg:px-20 gap-4 mb-5">
+        {/* <div className="flex flex-col lg:px-20 gap-4 mb-5">
           <Avatar className={cn("w-[5rem] h-[5rem]")}>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
@@ -97,7 +97,7 @@ const Profile = () => {
               Upload Photo
             </Button>
           </div>
-        </div>
+        </div> */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
