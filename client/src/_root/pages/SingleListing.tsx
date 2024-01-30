@@ -1,12 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import SingleImageCarousel from "@/components/shared/SingleListingCarousel";
 import { cn } from "@/lib/utils";
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
+
 import { useParams, Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
-import { dummyData } from "../data";
+import { PropertyInterface } from "types";
+// import { dummyData } from "../data";
 import { Heart, Printer, Share2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -28,6 +29,7 @@ const getDefaultProperty = (): PropertyInterface => {
     propertyStatus: "",
     location: {
       address: "",
+      state:'',
       city: "",
       country: "",
     },
@@ -55,33 +57,32 @@ const SingleListingPage = () => {
 
   const { id } = useParams();
 
-  const fetchPropertyLocale = (idNum: number) => {
-    const id = idNum.toString();
-    const props = dummyData.find((data) => data._id === id);
-    setProperty(props);
-  };
+  // const fetchPropertyLocale = (idNum: number) => {
+  //   const id = idNum.toString();
+  //   const props = dummyData.find((data) => data._id === id);
+  //   setProperty(props);
+  // };
 
   useEffect(() => {
     const fetchProperty = async (propertyId: string | undefined) => {
       try {
         const res = await fetchData(`property/${propertyId}`);
-        // console.log(res);
-        // setProperty(res.property);
+        console.log(res);
+        setProperty(res.property);
       } catch (error) {
         console.error(error);
       }
     };
 
-    // fetchProperty(id);
-    fetchPropertyLocale(id);
+    fetchProperty(id);
+    // fetchPropertyLocale(id);
   }, [id]);
 
   return (
- 
     <div className="flex flex-col gap-10">
       <section className="flex flex-col gap-2 lg:flex-row md:flex-row md:items-center lg:items-center justify-between mt-10">
         <div className="flex flex-col justify-center items-start">
-          <h2>Sing Family Home</h2>
+          <h2>{property.title}</h2>
           <p>1421 San Pedro St. Los Angeles, CA 900015</p>
         </div>
         <div className="flex  items-center gap-6">
@@ -251,7 +252,7 @@ const SingleListingPage = () => {
                 <h3>Location</h3>
                 <p>1421 San Pedro, Los Angelses, CA 90015</p>
               </div>
-              <LeafletMap />
+              <LeafletMap location={[10.0236, -37.9062]} zoom={13} />
             </div>
             <div className="bg-white p-4">
               <h3>Write a review</h3>

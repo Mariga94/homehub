@@ -10,9 +10,9 @@ import {
 } from "../ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
 import { addCommasToNumbers } from "@/services/addCommasToNumbers";
 import { Badge } from "../ui/badge";
+import { PropertyInterface } from "types";
 
 type HandleOnClick = (id: string) => void;
 

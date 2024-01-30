@@ -1,4 +1,4 @@
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
+import { PropertyInterface } from "types";
 import PropertyCard from "@/components/shared/PropertyCard";
 import { fetchData } from "@/services/api";
 import  { useEffect, useState } from "react";

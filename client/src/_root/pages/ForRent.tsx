@@ -2,18 +2,17 @@
  * Rent page for properties/listing to be rented
  */
 
-import PropertyCard from "@/components/shared/PropertyCard";
+
 
 import { useNavigate, useLocation } from "react-router-dom";
+import PropertyCard from "@/components/shared/PropertyCard";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+// import { dummyData } from "../data";
 
+import { PropertyInterface } from "types";
 
 import { fetchData } from "@/services/api";
-import { useEffect, useState } from "react";
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
-import { Button } from "@/components/ui/button";
-
-import { dummyData } from "../data";
-
 const ForRent = () => {
   const [propertiesForSale, setPropertiesForSale] = useState<
     PropertyInterface[]
@@ -44,9 +43,9 @@ const ForRent = () => {
   useEffect(() => {
     const fetchPropertyForSale = async () => {
       try {
-        // const res = await fetchData('property/for-sale');
-        // setPropertiesForSale(res.properties)
-        setPropertiesForSale(dummyData);
+        const res = await fetchData('property/for-sale');
+        setPropertiesForSale(res.properties)
+        // setPropertiesForSale(dummyData);
       } catch (error) {
         console.error(error);
       }

@@ -1,4 +1,4 @@
-import { PropertyInterface, } from "@/_dashboard/_components/ListingTable";
+import { PropertyInterface } from "types";
 export const dummyData:PropertyInterface[] = [
     {
       _id: '1',

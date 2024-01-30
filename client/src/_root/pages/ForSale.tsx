@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
 import { PropertyInterface } from "types";
-import { dummyData } from "../data";
+// import { dummyData } from "../data";
 import { Button } from "@/components/ui/button";
 const ForSale = () => {
   const [propertiesForSale, setPropertiesForSale] = useState<
@@ -38,9 +38,9 @@ const ForSale = () => {
   useEffect(() => {
     const fetchPropertyForSale = async () => {
       try {
-        // const res = await fetchData('property/for-sale');
-        // setPropertiesForSale(res.properties)
-        setPropertiesForSale(dummyData);
+        const res = await fetchData('property/for-sale');
+        setPropertiesForSale(res.properties)
+        // setPropertiesForSale(dummyData);
       } catch (error) {
         console.error(error);
       }
