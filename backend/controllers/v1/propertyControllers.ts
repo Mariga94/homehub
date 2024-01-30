@@ -139,4 +139,17 @@ export const getLatestPropertiesForRent = async (req: Request, res: Response) =>
     }
 }
 
+
+export const getFeaturedProperties = async (req: Request, res: Response) => {
+    try {
+        const featuredProperties = await PropertyService.getFeaturedProperties()
+        res.status(200).json({
+            message: 'Featured Properties fetch successfully', featuredProperties
+        })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" })
+    }
+}
+
 export { createProperty, getProperties, getPropertyById, updateProperty, deleteProperty, getUserProperties, getPropertiesByStatus, getPropertiesForSale, getPropertiesForRent }

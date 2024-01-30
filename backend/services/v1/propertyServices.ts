@@ -131,4 +131,18 @@ export const getLatestPropertiesForRent = async () => {
     }
 }
 
+export const getFeaturedProperties = async (limit: number = 5): Promise<IProperty[] | null> => {
+    try {
+        const featuredProperties = await PropertyModel.find({
+
+        }).limit(limit).populate({
+            path: 'owner',
+            select: 'fullName email'
+        })
+        return featuredProperties
+    } catch (error: any) {
+        throw new Error(`Error fetching featured properties: ${error.message}`)
+    }
+}
+
 export { createProperty, updateProperty, deleteProperty, getProperties, getPropertyById, getUserProperties, getPropertiesByStatus, getPropertiesForSale, getPropertiesForRent }

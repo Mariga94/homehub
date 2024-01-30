@@ -37,16 +37,17 @@ const router = express.Router();
  */
 
 
-router.post('/', PropertyController.createProperty);
+router.post('/', authenticateUser, PropertyController.createProperty);
 router.get('/', PropertyController.getProperties);
-router.get('/user', PropertyController.getUserProperties);
+router.get('/user', authenticateUser, PropertyController.getUserProperties);
 router.get('/for-sale', PropertyController.getPropertiesForSale);
 router.get('/latest/for-sale', PropertyController.getPropertiesForSale);
 router.get('/latest/for-rent', PropertyController.getPropertiesForRent);
+router.get('/featured', PropertyController.getFeaturedProperties)
 router.get('/for-rent', PropertyController.getPropertiesForRent);
 router.get('/:id', PropertyController.getPropertyById);
 router.put('/:id', PropertyController.updateProperty);
-router.delete('/:id', PropertyController.deleteProperty);
+router.delete('/:id', authenticateUser, PropertyController.deleteProperty);
 
 
 export default router
