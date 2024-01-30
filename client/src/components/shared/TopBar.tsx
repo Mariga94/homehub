@@ -14,7 +14,9 @@ const TopBar = () => {
   };
 
   return (
-    <nav className={`relative h-16 flex flex-row items-center justify-between px-5 shadow-sm ${isMobileMenuOpen}`}>
+    <nav
+      className={`relative h-16 flex flex-row items-center justify-between px-5 shadow-sm ${isMobileMenuOpen}`}
+    >
       <div className="flex flex-row items-center justify-between w-full lg:hidden md:hidden">
         <HomeHubLogo />
         {!checkAuth() && (
@@ -60,8 +62,9 @@ const TopBar = () => {
         <Button variant="ghost" asChild>
           <Link to="/listing/for-rent">Rent</Link>
         </Button>
-        <Button variant="ghost">Sell</Button>
-        <Button variant="ghost">Manage Property</Button>
+        <Button variant="ghost" asChild>
+          <Link to="/dashboard/create-listing">Manage Property</Link>
+        </Button>
       </div>
       {checkAuth() ? (
         <ProfileAvatar />

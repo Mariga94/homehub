@@ -43,7 +43,7 @@ const ForRent = () => {
   useEffect(() => {
     const fetchPropertyForSale = async () => {
       try {
-        const res = await fetchData('property/for-sale');
+        const res = await fetchData('property/for-rent');
         setPropertiesForSale(res.properties)
         // setPropertiesForSale(dummyData);
       } catch (error) {

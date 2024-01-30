@@ -38,6 +38,12 @@ export interface locationInterface {
     country: string;
 }
 
+export interface OwnerInterface {
+    _id: string;
+    fullName: string;
+    email: string;
+}
+
 export interface PropertyInterface {
     _id: string;
     title: string;
@@ -54,4 +60,5 @@ export interface PropertyInterface {
     videoUrl: string;
     features: featuresInterface;
     gallery: string[];
+    owner: OwnerInterface
 }

@@ -76,7 +76,7 @@ const PropertyCard = ({
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <p>Peter Ceasar</p>
+        <p>{property.owner.fullName}</p>
       </CardFooter>
     </Card>
   );

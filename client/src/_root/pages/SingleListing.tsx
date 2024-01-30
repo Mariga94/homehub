@@ -15,11 +15,8 @@ import LeafletMap from "@/components/shared/LeafletMap";
 import { ContactForm } from "../components/contactForm";
 import ReviewForm from "../components/reviewForm";
 import ReadMore from "../components/readMore";
+import { addCommasToNumbers } from "@/services/addCommasToNumbers";
 
-const text: string = `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus
-quas est doloremque, unde ex voluptatum recusandae, minus officiis
-ad iste ducimus, exercitationem saepe distinctio quae vero labore
-sit. Sapiente, dolores.`;
 const getDefaultProperty = (): PropertyInterface => {
   return {
     _id: "",
@@ -29,7 +26,7 @@ const getDefaultProperty = (): PropertyInterface => {
     propertyStatus: "",
     location: {
       address: "",
-      state:'',
+      state: "",
       city: "",
       country: "",
     },
@@ -49,6 +46,11 @@ const getDefaultProperty = (): PropertyInterface => {
       fireAlarm: false,
     },
     gallery: [],
+    owner: {
+      _id: "",
+      fullName: "",
+      email: "",
+    },
   };
 };
 const SingleListingPage = () => {
@@ -83,10 +85,10 @@ const SingleListingPage = () => {
       <section className="flex flex-col gap-2 lg:flex-row md:flex-row md:items-center lg:items-center justify-between mt-10">
         <div className="flex flex-col justify-center items-start">
           <h2>{property.title}</h2>
-          <p>1421 San Pedro St. Los Angeles, CA 900015</p>
+          <p>{`${property.location.address} ${property.location.country} ${property.location.country}`}</p>
         </div>
         <div className="flex  items-center gap-6">
-          <h2>$13000/mo</h2>
+          <h2>{addCommasToNumbers(property.price)}</h2>
           <div className="flex gap-6  md:relative lg:relative  text-gray-500 z-50 absolute lg:top-auto lg:left-auto lg:transform-none lg:-translate-x-0 lg:-translate-y-0 md:top-auto md:left-auto md:transform-none md:-translate-x-0 md:-translate-y-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Heart
               className="bg-slate-50 p-1 rounded-sm lg:hover:text-gray-100 hover:bg-primary"
@@ -133,29 +135,29 @@ const SingleListingPage = () => {
                     "rounded-sm bg-gray-200 text-gray-500 hover:text-primary hover:bg-gray-200 ease-in-out"
                   )}
                 >
-                  Bed: 4
+                  Bed: {property.bedrooms}
                 </Badge>
                 <Badge
                   className={cn(
                     "rounded-sm bg-gray-200 text-gray-500 hover:text-primary hover:bg-gray-200"
                   )}
                 >
-                  Bath: 1
+                  Bath: {property.bathrooms}
                 </Badge>
                 <Badge
                   className={cn(
                     "rounded-sm text-gray-500 bg-gray-200 hover:text-primary hover:bg-gray-200"
                   )}
                 >
-                  Sq Ft: 5200
+                  Sq Ft: {property.size}
                 </Badge>
               </div>
               <h3>Description</h3>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus
-              quas est doloremque, unde ex voluptatum recusandae, minus officiis
-              ad iste ducimus, exercitationem saepe distinctio quae vero labore
-              sit. Sapiente, dolores.
-              <ReadMore text={text} maxLength={10} />
+
+              <ReadMore
+                text={property.description}
+                maxLength={property.description.length / 2}
+              />
               <Separator />
               <div className="flex flex-col gap-2 bg-white">
                 <h3>Property Details</h3>
@@ -166,37 +168,33 @@ const SingleListingPage = () => {
                   </li>
                   <li>
                     <p>
-                      Price $ <strong>130,000</strong>
+                      Price $ <strong>{property.price}</strong>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Property Size: <strong>1560 Sq Ft</strong>
+                      Property Size: <strong>{property.size} Sq Ft</strong>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Bedrooms: <strong>8</strong>
+                      Bedrooms: <strong>{property.bedrooms}</strong>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Bathrooms: <strong>4</strong>
+                      Bathrooms: <strong>{property.bathrooms}</strong>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Garage: <strong>2</strong>
+                      Property Type: <strong>{property.type}</strong>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Property Type: <strong>Apartment</strong>
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Property Status: <strong>For Sale</strong>
+                      Property Status:{" "}
+                      <strong>{property.propertyStatus}</strong>
                     </p>
                   </li>
                 </ul>
@@ -206,31 +204,17 @@ const SingleListingPage = () => {
             <div className="flex flex-col gap-2 bg-white p-5 rounded-lg">
               <h3>Features</h3>
               <ul className="flex flex-col flex-wrap h-28 gap-5">
-                <li>
-                  <p>
-                    <span className="text-primary">✔</span> Pool
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <span className="text-primary">✔</span> Gym
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <span className="text-primary">✔</span> Swimming Pool
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <span className="text-primary">✔</span> Wifi
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    <span className="text-primary">✔</span> Tv Cable
-                  </p>
-                </li>
+                {Object.entries(property.features).map(([feature, value]) => {
+                  if (value === "true") {
+                    return (
+                      <li>
+                        <p>
+                          <span className="text-primary">✔</span> {feature}
+                        </p>
+                      </li>
+                    );
+                  }
+                })}
               </ul>
             </div>
             <div className="bg-white flex flex-col gap-3 p-5 rounded-lg">
@@ -250,7 +234,7 @@ const SingleListingPage = () => {
             <div className="flex flex-col gap-3 bg-white p-5 rounded-lg">
               <div className="flex flex-col gap-2 lg:flex-row justify-between">
                 <h3>Location</h3>
-                <p>1421 San Pedro, Los Angelses, CA 90015</p>
+                <p>{`${property.location.address} ${property.location.country} ${property.location.country}`}</p>
               </div>
               <LeafletMap location={[10.0236, -37.9062]} zoom={13} />
             </div>
@@ -268,9 +252,9 @@ const SingleListingPage = () => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <h4>John Does</h4>
-              <p>_9999999</p>
-              <p>email@email.com</p>
+              <h4>{property.owner.fullName}</h4>
+
+              <p>{property.owner.email}</p>
               <p>
                 <Link
                   to="/"

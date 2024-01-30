@@ -6,12 +6,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/services/api";
 import { PropertyInterface } from "types";
-// import { dummyData } from "../data";
+
 import { Button } from "@/components/ui/button";
 const ForSale = () => {
   const [propertiesForSale, setPropertiesForSale] = useState<
     PropertyInterface[]
   >([]);
+
+  
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage: number = 6;
   const navigate = useNavigate();
