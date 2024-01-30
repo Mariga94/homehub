@@ -1,8 +1,9 @@
 import PropertyCard from "@/components/shared/PropertyCard";
-import { dummyData } from "../data";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PropertyInterface } from "types";
+import { fetchData } from "@/services/api";
 
 const FeaturedProperty = () => {
   const [featuredProperties, setFeaturedProperties] = useState<
@@ -11,7 +12,17 @@ const FeaturedProperty = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFeaturedProperties(dummyData);
+    const fetchFeaturedProperties = async () => {
+      try {
+        const res = await fetchData("property/featured");
+       
+        setFeaturedProperties(res.featuredProperties);
+       
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchFeaturedProperties();
   }, []);
 
   const handleOnClick = (id: string) => {

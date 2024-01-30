@@ -15,10 +15,11 @@ const About = () => {
             We make it easy for buyers, sellers and renters
           </h2>
           <p className="text-justify">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-            perspiciatis enim illo repudiandae repellendus, similique magni
-            error, possimus asperiores praesentium earum. Voluptatibus cum illo
-            aliquid rerum labore numquam, reprehenderit dolor.
+            At HomeHub, we're committed to providing a simplified real estate
+            experience for everyone involved. Join us and let us guide you
+            through the journey of buying, selling, or renting, making it a
+            seamless and enjoyable process. Welcome to a platform that truly
+            makes real estate easy for you.
           </p>
         </div>
       </div>

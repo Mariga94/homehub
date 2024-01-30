@@ -13,7 +13,6 @@ const ForSale = () => {
     PropertyInterface[]
   >([]);
 
-  
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage: number = 6;
   const navigate = useNavigate();
@@ -40,9 +39,8 @@ const ForSale = () => {
   useEffect(() => {
     const fetchPropertyForSale = async () => {
       try {
-        const res = await fetchData('property/for-sale');
-        setPropertiesForSale(res.properties)
-        // setPropertiesForSale(dummyData);
+        const res = await fetchData("property/for-sale");
+        setPropertiesForSale(res.properties);
       } catch (error) {
         console.error(error);
       }
@@ -66,7 +64,11 @@ const ForSale = () => {
             ))
           ) : (
             <>
-              <p> No properties for sale</p>
+              <p>
+                {" "}
+                No properties for sale. Create an account and add properties if
+                your are agent/landlord
+              </p>
             </>
           )}
         </section>

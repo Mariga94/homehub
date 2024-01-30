@@ -23,6 +23,7 @@ const PropertyCard = ({
   property: PropertyInterface;
   handleOnClick: HandleOnClick;
 }) => {
+  console.log(property);
   return (
     <Card
       className={cn("lg:w-96 w-full md:w-auto flex-shrink-0 ")}
@@ -50,7 +51,7 @@ const PropertyCard = ({
         </CardTitle>
         <CardDescription>
           <p className="text-primary text-[0.875rem]">{property.type}</p>
-          <h4 className="">{property.title}</h4>
+          <span className="font-semibold">{property.title}</span>
         </CardDescription>
       </CardHeader>
       <CardContent className=" px-2 py-2 flex flex-col gap-2">
@@ -76,7 +77,7 @@ const PropertyCard = ({
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <p>{property.owner.fullName}</p>
+        <p>{property.owner && property.owner.fullName}</p>
       </CardFooter>
     </Card>
   );

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { ProfileAvatar } from "./ProfileAvatar";
 import { useState } from "react";
@@ -8,9 +8,15 @@ import HomeHubLogo from "./Logo";
 
 const TopBar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const toggleMobileMenu = (): void => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleManagePropertyClick = () => {
+    checkAuth()
+      ? navigate("/dashboard/create-listing")
+      : alert("Please log in to manage your property");
   };
 
   return (
@@ -62,8 +68,12 @@ const TopBar = () => {
         <Button variant="ghost" asChild>
           <Link to="/listing/for-rent">Rent</Link>
         </Button>
-        <Button variant="ghost" asChild>
-          <Link to="/dashboard/create-listing">Manage Property</Link>
+        <Button
+          variant="link"
+          className="text-black no-underline hover:bg-blue-50 hover:no-underline"
+          onClick={() => handleManagePropertyClick()}
+        >
+          Manage Property
         </Button>
       </div>
       {checkAuth() ? (
