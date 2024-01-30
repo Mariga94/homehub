@@ -14,7 +14,7 @@ const createProperty = async (propertyData: IProperty, userId: string): Promise<
             owner: user._id
         });
         user.properties.push(newProperty._id)
-        user.save()
+        user.save();
         return newProperty
     } catch (error: any) {
         throw new Error(`Error creating property ${error.message}`)
@@ -35,7 +35,10 @@ const getPropertyById = async (propertyId: string): Promise<IProperty | null> =>
         if (!propertyId) {
             throw new Error("Property Id is undefined");
         }
-        const property = await PropertyModel.findById(propertyId);
+        const property = await PropertyModel.findById(propertyId).populate({
+            path: 'owner',
+            select: 'fullName email',
+        })
         return property
     } catch (error: any) {
         throw new Error(`Error fetching property with ${propertyId}: ${error.message}`)
@@ -44,7 +47,10 @@ const getPropertyById = async (propertyId: string): Promise<IProperty | null> =>
 
 const getProperties = async (): Promise<IProperty[] | null> => {
     try {
-        const properties = await PropertyModel.find()
+        const properties = await PropertyModel.find().populate({
+            path: 'owner',
+            select: 'fullName email',
+        })
         return properties
     } catch (error: any) {
         throw new Error(`Error fetching properties ${error.message}`)
@@ -71,7 +77,10 @@ const getPropertiesByStatus = async (propertyStatus: string): Promise<IProperty[
 
 const getPropertiesForSale = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'sale' })
+        const properties = await PropertyModel.find({ propertyStatus: 'sale' }).populate({
+            path: 'owner',
+            select: 'fullName email'
+        })
         return properties
     } catch (error) {
         throw new Error('Error fetching properties for sale');
@@ -80,7 +89,10 @@ const getPropertiesForSale = async () => {
 
 const getPropertiesForRent = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'rent' })
+        const properties = await PropertyModel.find({ propertyStatus: 'rent' }).populate({
+            path: 'owner',
+            select: 'fullName email',
+        })
         return properties
     } catch (error) {
         throw new Error('Error fetching properties for sale');
@@ -97,7 +109,10 @@ const deleteProperty = async (id: string) => {
 
 export const getLatestPropertiesForSale = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'sale' })
+        const properties = await PropertyModel.find({ propertyStatus: 'sale' }).populate({
+            path: 'owner',
+            select: 'fullName email'
+        })
         return properties.slice(0, 5)
     } catch (error: any) {
         throw new Error(`Error fetching properties: ${error.message}`)
@@ -106,7 +121,10 @@ export const getLatestPropertiesForSale = async () => {
 
 export const getLatestPropertiesForRent = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'rent' })
+        const properties = await PropertyModel.find({ propertyStatus: 'rent' }).populate({
+            path: 'owner',
+            select: 'fullName email'
+        })
         return properties.slice(0, 5)
     } catch (error: any) {
         throw new Error(`Error fetching properties: ${error.message}`)
