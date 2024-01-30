@@ -37,16 +37,16 @@ const router = express.Router();
  */
 
 
-router.post('/', authenticateUser, PropertyController.createProperty);
-router.get('/', authenticateUser, PropertyController.getProperties);
-router.get('/user', authenticateUser, PropertyController.getUserProperties);
-router.get('/for-sale', authenticateUser, PropertyController.getPropertiesForSale);
-router.get('/latest/for-sale', authenticateUser, PropertyController.getPropertiesForSale);
-router.get('/latest/for-rent', authenticateUser, PropertyController.getPropertiesForRent);
-router.get('/for-rent', authenticateUser, PropertyController.getPropertiesForRent);
-router.get('/:id', authenticateUser, PropertyController.getPropertyById);
-router.put('/:id', authenticateUser, PropertyController.updateProperty);
-router.delete('/:id', authenticateUser, PropertyController.deleteProperty);
+router.post('/', PropertyController.createProperty);
+router.get('/', PropertyController.getProperties);
+router.get('/user', PropertyController.getUserProperties);
+router.get('/for-sale', PropertyController.getPropertiesForSale);
+router.get('/latest/for-sale', PropertyController.getPropertiesForSale);
+router.get('/latest/for-rent', PropertyController.getPropertiesForRent);
+router.get('/for-rent', PropertyController.getPropertiesForRent);
+router.get('/:id', PropertyController.getPropertyById);
+router.put('/:id', PropertyController.updateProperty);
+router.delete('/:id', PropertyController.deleteProperty);
 
 
 export default router
