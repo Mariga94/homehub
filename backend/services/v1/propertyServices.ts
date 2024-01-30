@@ -71,7 +71,7 @@ const getPropertiesByStatus = async (propertyStatus: string): Promise<IProperty[
 
 const getPropertiesForSale = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'Sale' })
+        const properties = await PropertyModel.find({ propertyStatus: 'sale' })
         return properties
     } catch (error) {
         throw new Error('Error fetching properties for sale');
@@ -80,7 +80,7 @@ const getPropertiesForSale = async () => {
 
 const getPropertiesForRent = async () => {
     try {
-        const properties = await PropertyModel.find({ propertyStatus: 'Rent' })
+        const properties = await PropertyModel.find({ propertyStatus: 'rent' })
         return properties
     } catch (error) {
         throw new Error('Error fetching properties for sale');
