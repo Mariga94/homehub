@@ -1,5 +1,5 @@
-import { PropertyInterface } from "types";
-export const dummyData:PropertyInterface[] = [
+
+export const dummyData= [
     {
       _id: '1',
       title: 'Modern Luxury Villa',
