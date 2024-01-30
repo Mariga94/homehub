@@ -35,15 +35,16 @@ import { ChangeEvent, useState } from "react";
 import { postData } from "@/services/api";
 
 const types = [
-  { label: "Apartment", value: "Apartment" },
-  { label: "Furnished Apartment", value: "Furnished Apartment" },
-  { label: "Offices", value: "Offices" },
-  { label: "Bungalow", value: "Bungalow" },
+  { label: "Apartment", value: "apartment" },
+  { label: "Furnished Apartment", value: "furnished apartment" },
+  { label: "Offices", value: "offices" },
+  { label: "Bungalow", value: "bungalow" },
+  { label: "Villa", value: "Villa" },
 ] as const;
 
 const status = [
-  { label: "Rent", value: "Rent" },
-  { label: "Sale", value: "Sale" },
+  { label: "Rent", value: "rent" },
+  { label: "Sale", value: "sale" },
 ] as const;
 
 const locationSchema = z.object({
@@ -160,7 +161,7 @@ const CreateListing = () => {
 
   // console.log(form.getValues())
   function getImageData(event: ChangeEvent<HTMLInputElement>) {
-    event.stopPropagation()
+    event.stopPropagation();
     // FileList is immutable, so we need to create a new one
     const dataTransfer = new DataTransfer();
 
@@ -863,99 +864,96 @@ const CreateListing = () => {
                 )}
               />
             </div>
-           
-            
           </div>
           <div className="bg-white rounded-md p-4">
-              <h3>Property Gallery</h3>
-              <div className="flex flex-col">
-                <FormField
-                  control={form.control}
-                  name="gallery"
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  render={({ field: { onChange, value, ...rest } }) => (
-                    <FormItem>
-                      <FormLabel>All 3 Images</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="file"
-                          {...rest}
-                          
-                          multiple
-                          accept="image/*"
-                          onChange={(event) => {
-                            const { imagesArray, displayURLsArray } =
-                              getImageData(event);
-                            updatePreview(displayURLsArray);
-                            onChange(imagesArray);
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <h3>Property Gallery</h3>
+            <div className="flex flex-col">
+              <FormField
+                control={form.control}
+                name="gallery"
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                render={({ field: { onChange, value, ...rest } }) => (
+                  <FormItem>
+                    <FormLabel>All 3 Images</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        {...rest}
+                        multiple
+                        accept="image/*"
+                        onChange={(event) => {
+                          const { imagesArray, displayURLsArray } =
+                            getImageData(event);
+                          updatePreview(displayURLsArray);
+                          onChange(imagesArray);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <div className="lg:flex lg:flex-row mt-5">
-                  {preview.length
-                    ? preview.map((image: string, index) => (
-                        <img
-                          key={index}
-                          src={image}
-                          alt=""
-                          className="lg:h-80 lg:w-80 md:h-40 md:w-40 h-20 w-20 rounded-md"
-                        />
-                      ))
-                    : ""}
-                </div>
+              <div className="lg:flex lg:flex-row mt-5">
+                {preview.length
+                  ? preview.map((image: string, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt=""
+                        className="lg:h-80 lg:w-80 md:h-40 md:w-40 h-20 w-20 rounded-md"
+                      />
+                    ))
+                  : ""}
               </div>
             </div>
+          </div>
           <div className="bg-white p-4 rounded-sm">
-              <h3>Property Location</h3>
-              <div className="lg:grid md:grid  lg:grid-cols-3 md:grid-cols-3 flex flex-col w-full gap-5">
-                <FormField
-                  control={form.control}
-                  name="location.address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Address</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter Address" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <h3>Property Location</h3>
+            <div className="lg:grid md:grid  lg:grid-cols-3 md:grid-cols-3 flex flex-col w-full gap-5">
+              <FormField
+                control={form.control}
+                name="location.address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter Address" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="location.city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>City</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter City" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+                control={form.control}
+                name="location.city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>City</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter City" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="location.country"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Country</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter Country" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="location.country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter Country" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
+          </div>
           <Button type="submit" className={cn("w-[200px]")}>
             {loading ? "Submitting..." : "Submit Property"}
           </Button>
