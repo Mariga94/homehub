@@ -7,7 +7,7 @@ enum PropertyType {
     Office = 'office',
     Bungalow = 'bungalow',
     Furnished_Apartment = 'furnished apartment',
-    villa = 'villa'
+    Villa = 'villa'
 }
 
 enum PropertyStatus {
@@ -20,7 +20,7 @@ export interface IProperty extends Document {
     description: string;
     type: PropertyType;
     propertyStatus: PropertyStatus;
-    location: {
+    location?: {
         address: string;
         country: string;
         city: string;
@@ -31,30 +31,30 @@ export interface IProperty extends Document {
     bathrooms: number;
     floors: number;
     price: number;
-    videoUrl: string;
+    videoUrl?: string;
     features: {
-        fireAlarm: string;
-        balcony: string;
-        petFriendly: string;
-        gym: string;
-        elevator: string
-        garden: string;
-        swimmingPool: string;
-        exposedBrick: string;
-        cityView: string;
-        rooftopAccess: string;
-        oceanView: string;
-        scenicView: string;
-        wraparoundDeck: string;
-        fireplace: string;
-        hikingTrails: string;
-        highCeilings: string;
-        backyard: string;
-        spaciousKitchen: string;
-        studyRoom: string;
-        garage: string;
-        parking: string;
-        securitySystem: string;
+        fireAlarm?: string;
+        balcony?: string;
+        petFriendly?: string;
+        gym?: string;
+        elevator?: string
+        garden?: string;
+        swimmingPool?: string;
+        exposedBrick?: string;
+        cityView?: string;
+        rooftopAccess?: string;
+        oceanView?: string;
+        scenicView?: string;
+        wraparoundDeck?: string;
+        fireplace?: string;
+        hikingTrails?: string;
+        highCeilings?: string;
+        backyard?: string;
+        spaciousKitchen?: string;
+        studyRoom?: string;
+        garage?: string;
+        parking?: string;
+        securitySystem?: string;
     };
     gallery: string[];
     owner: { type: string, ref: string, }
@@ -78,28 +78,28 @@ const propertySchema = new Schema<IProperty>({
     price: { type: Number, required: true },
     videoUrl: { type: String, required: false },
     features: {
-        fireAlarm: { type: String, required: true },
-        balcony: { type: String, required: true },
-        petFriendly: { type: String, required: true },
-        gym: { type: String, required: true },
-        elevator: { type: String, required: true },
-        garden: { type: String, required: true },
-        swimmingPool: { type: String, required: true },
-        exposedBrick: { type: String, required: true },
-        cityView: { type: String, required: true },
-        rooftopAccess: { type: String, required: true },
-        oceanView: { type: String, required: true },
-        scenicView: { type: String, required: true },
-        wraparoundDeck: { type: String, required: true },
-        fireplace: { type: String, required: true },
-        hikingTrails: { type: String, required: true },
-        highCeilings: { type: String, required: true },
-        backyard: { type: String, required: true },
-        spaciousKitchen: { type: String, required: true },
-        studyRoom: { type: String, required: true },
-        garage: { type: String, required: true },
-        parking: { type: String, required: true },
-        securitySystem: { type: String, required: true },
+        fireAlarm: { type: String, required: false },
+        balcony: { type: String, required: false },
+        petFriendly: { type: String, required: false },
+        gym: { type: String, required: false },
+        elevator: { type: String, required: false },
+        garden: { type: String, required: false },
+        swimmingPool: { type: String, required: false },
+        exposedBrick: { type: String, required: false },
+        cityView: { type: String, required: false },
+        rooftopAccess: { type: String, required: false },
+        oceanView: { type: String, required: false },
+        scenicView: { type: String, required: false},
+        wraparoundDeck: { type: String, required: false },
+        fireplace: { type: String, required: false },
+        hikingTrails: { type: String, required: false },
+        highCeilings: { type: String, required: false },
+        backyard: { type: String, required: false },
+        spaciousKitchen: { type: String, required: false },
+        studyRoom: { type: String, required: false },
+        garage: { type: String, required: false },
+        parking: { type: String, required: false },
+        securitySystem: { type: String, required: false },
     },
     gallery: { type: [String], required: false },
     owner: { type: Schema.Types.ObjectId, ref: 'User' }
