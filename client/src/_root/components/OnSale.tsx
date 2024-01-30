@@ -1,15 +1,14 @@
-import { PropertyInterface } from "@/_dashboard/_components/ListingTable";
+import { PropertyInterface } from "types";
 import PropertyCard from "@/components/shared/PropertyCard";
 import { fetchData } from "@/services/api";
-import  { useEffect, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OnSale = () => {
   const [latestPropertiesForSale, setLatestPropertiesForSale] = useState<
     PropertyInterface[]
   >([]);
   const navigate = useNavigate();
-
 
   const handleOnClick = (id: string) => {
     navigate(`listing/${id}`);

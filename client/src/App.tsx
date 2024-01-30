@@ -13,7 +13,7 @@ import Favourites from "./_dashboard/pages/Favourite";
 import CreateListing from "./_dashboard/pages/CreateListing";
 import ProtectedRoute from "./privateRoute";
 import Error from "./_404/Error";
-import MySingleListing from "./_dashboard/pages/mysingleListing";
+import MySingleListing from "./_dashboard/pages/MySingleListing";
 // import { AuthProvider } from "../context/AuthContext";
 function App() {
   return (
