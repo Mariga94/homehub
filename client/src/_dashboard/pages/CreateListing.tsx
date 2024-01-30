@@ -39,7 +39,7 @@ const types = [
   { label: "Furnished Apartment", value: "furnished apartment" },
   { label: "Offices", value: "offices" },
   { label: "Bungalow", value: "bungalow" },
-  { label: "Villa", value: "Villa" },
+  { label: "Villa", value: "villa" },
 ] as const;
 
 const status = [
@@ -195,6 +195,7 @@ const CreateListing = () => {
         description: `${res.message}`,
       });
       console.log(res);
+
       form.reset();
       setPreview([]);
     } catch (error) {
