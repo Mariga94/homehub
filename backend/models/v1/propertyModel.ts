@@ -3,15 +3,16 @@ import mongoose, { Document, Schema } from 'mongoose'
 // Define the inteface for the User Document
 
 enum PropertyType {
-    Apartment = 'Apartment',
-    Office = 'Office',
-    Bungalow = 'Bungalow',
-    Furnished_Apartment = 'Furnished Apartment'
+    Apartment = 'apartment',
+    Office = 'office',
+    Bungalow = 'bungalow',
+    Furnished_Apartment = 'furnished apartment',
+    villa = 'villa'
 }
 
 enum PropertyStatus {
-    Sale = 'Sale',
-    Rent = 'Rent'
+    Sale = 'sale',
+    Rent = 'rent'
 }
 
 export interface IProperty extends Document {
